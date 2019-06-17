@@ -17,6 +17,10 @@
   - [Inclusão Digital - Etica.AI: Recursos gratuitos de apoio à inclusão digital de pessoas desenvolvedoras de tecnologia](https://inclusao.etica.ai/)
   - [Contexto tecnológico para fomento de Ética na Inteligência Artificial na CPLP](https://cplp.etica.ai/)
 
-## Licença
-Exceto onde estiver explicitado contrário, toda informação contida neste
-repositório é dedicada ao Domínio Publico.
+# Licença
+
+[![Domínio Público](img/dominio-publico.png)](UNLICENSE)
+
+Na medida do possível segundo a lei, [EticaAI](https://github.com/EticaAI)
+renunciou a todos os direitos autorais e direitos conexos ou vizinhos a este
+trabalho para o [Domínio Público](UNLICENSE).
