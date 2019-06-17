@@ -4,7 +4,9 @@
 **Documentação de toda pilha de soluções usadas na Plataforma Como Serviço
 ("PaaS") comunitária da organização Etica.AI.**
 
-Guias em <https://aguia-pescadora.etica.ai/>.
+- [Pilha de soluções usadas na Águia Pesquisadora comentada](docs/pilha-de-solucoes/)
+- [Diário de bordo](diario-de-bordo/)
+- Site público com guias: <https://aguia-pescadora.etica.ai/>.
 
 ## Veja também
 - _[AIOps para Comunidade dos Países de Língua Portuguesa, 2019/01](https://github.com/fititnt/cplp-aiops)_
