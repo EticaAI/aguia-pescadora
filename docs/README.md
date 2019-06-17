@@ -1,13 +1,30 @@
 # Águia Pescadora
 
+**Águia Pescadora é o nome dado ao projeto da Etica.AI de Plataforma Como Serviço
+(_"PaaS"_) oferecida gratuitamente a quem da apoio em comunidades de base nas
+quais participamos.** Nas próximas semanas devemos ter um ambiente
+aceitavelmente pronto para uso em produção e com controle automatizado de
+[etica.dev](https://etica.dev), sendo um dos nossos maiores desafios o processo
+de documentação e otimização para permitir uso simples.
+
+---
+
+<!--
 <figure class="image">
   <img src="img/aguia-pescadora-banner.jpg" alt="{{ include.description }}">
   <figcaption>Águia Pescadora © Andy Morffew</figcaption>
 </figure>
+-->
 
-> "Se não puder voar, corra. Se não puder correr, ande. Se não puder andar,
-> rasteje, mas continue em frente de qualquer jeito"
+> _"Se não puder voar, corra. Se não puder correr, ande. Se não puder andar,
+> rasteje, mas continue em frente de qualquer jeito"_
 > — Martin Luther King Jr, vencedor do Prêmio Nobel da Paz em 1964
+
+---
+
+
+[![Website: aguia-pescadora.etica.ai](img/badges/website.svg)](https://aguia-pescadora.etica.ai) [![GitHub: EticaAI/aguia-pescadora](img/badges/github.svg)](https://github.com/EticaAI/aguia-pescadora)
+
 
 - Sobre o Águia Pescadora
   - [Guia de Usuário](guia-de-usuario/)

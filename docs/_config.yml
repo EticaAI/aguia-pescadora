@@ -1,0 +1,15 @@
+title: "Águia Pescadora: Plataforma Como Serviço da Etica.AI"
+description: "Águia Pescadora é o nome dado ao projeto da Etica.AI de Plataforma Como Serviço
+(\"PaaS\") oferecida gratuitamente a quem da apoio em comunidades de base nas
+quais participamos."
+image: 'img/aguia-pescadora-banner.jpg'
+
+# see https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
+lang: 'pt'
+
+twitter:
+  username: EticaAI
+  card: summary
+
+plugins:
+  - jekyll-seo-tag

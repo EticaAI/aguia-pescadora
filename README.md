@@ -1,12 +1,13 @@
-# Águia Pescadora - Pilha de soluções usadas pela Etica.AI
+# Águia Pescadora: Plataforma Como Serviço da Etica.AI
 
-![Banner Águia Pescadora - © Andy Morffew www.andymorffew.com](docs/img/aguia-pescadora-banner.jpg)
-**Documentação de toda pilha de soluções usadas na Plataforma Como Serviço
-("PaaS") comunitária da Etica.AI.**
+**Águia Pescadora é o nome dado ao projeto da Etica.AI de Plataforma Como Serviço
+(_"PaaS"_) oferecida gratuitamente a quem da apoio em comunidades de base nas
+quais participamos.**
 
-Águia Pescadora é o nome dado ao projeto da Etica.AI de Plataforma Como Serviço
-("PaaS") oferecida gratuitamente a quem da apoio em comunidades de base nas
-quais participamos.
+[![Banner Águia Pescadora - © Andy Morffew www.andymorffew.com](docs/img/aguia-pescadora-banner.jpg)](https://aguia-pescadora.etica.ai)
+
+[![Website: aguia-pescadora.etica.ai](docs/img/badges/website.svg)](https://aguia-pescadora.etica.ai) [![GitHub: EticaAI/aguia-pescadora](docs/img/badges/github.svg)](https://github.com/EticaAI/aguia-pescadora)
+
 
 <!--
 
@@ -25,9 +26,14 @@ principalmente implementação de sua Plataforma Como Serviço ("PaaS") comunit�
 
 -->
 
+Acesse o site em <https://aguia-pescadora.etica.ai>. Informações extras também
+estão disponíveis em nosso [Diário de bordo](diario-de-bordo/).
+
+<!--
 - [Pilha de soluções usadas na Águia Pesquisadora comentada](docs/pilha-de-solucoes/)
 - [Diário de bordo](diario-de-bordo/)
-- Site público com guias: <https://aguia-pescadora.etica.ai/>.
+-->
+
 
 ## Veja também
 - _[AIOps para Comunidade dos Países de Língua Portuguesa, 2019/01](https://github.com/fititnt/cplp-aiops)_
