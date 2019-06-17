@@ -18,18 +18,17 @@ de documentação e otimização para permitir uso simples.
 
 > _"Se não puder voar, corra. Se não puder correr, ande. Se não puder andar,
 > rasteje, mas continue em frente de qualquer jeito"_
-> — Martin Luther King Jr, vencedor do Prêmio Nobel da Paz em 1964
+> — [Martin Luther King Jr](https://pt.wikipedia.org/wiki/Martin_Luther_King_Jr.), vencedor do Prêmio Nobel da Paz em 1964
 
 ---
-
 
 [![Website: aguia-pescadora.etica.ai](img/badges/website.svg)](https://aguia-pescadora.etica.ai) [![GitHub: EticaAI/aguia-pescadora](img/badges/github.svg)](https://github.com/EticaAI/aguia-pescadora)
 
 
 - Sobre o Águia Pescadora
   - [Guia de Usuário](guia-de-usuario/)
-  - [Guia de pessoa com poder elevado e que apoia novos usuários da Águia Pescadora](./guia-de-moderacao/)
-  - [Rascunho de informações de como pessoa poderia Recriar Águia Pescadora](guia-de-criacao/)
+  - [Guia de suporte: informações extras para quem ajuda usuários](./guia-de-suporte/)
+  - [Filosofia: das decisões que levaram a escolha da pilha de soluções a dicas de o que considerar ao criar sua própria](filosofia/)
 - Sites extras da Etica.AI relacionados ao Águia Pescadora
   - [Inclusão Digital - Etica.AI: Recursos gratuitos de apoio à inclusão digital de pessoas desenvolvedoras de tecnologia](https://inclusao.etica.ai/)
   - [Contexto tecnológico para fomento de Ética na Inteligência Artificial na CPLP](https://cplp.etica.ai/)
