@@ -1,6 +1,10 @@
 # Águia Pescadora - Pilha de soluções usadas pela Etica.AI
-Documentação de toda pilha de soluções usadas na Plataforma Como Serviço
-("PaaS") comunitária da organização Etica.AI.
+
+![Banner Águia Pescadora - © Andy Morffew www.andymorffew.com](docs/img/aguia-pescadora-banner.jpg)
+**Documentação de toda pilha de soluções usadas na Plataforma Como Serviço
+("PaaS") comunitária da organização Etica.AI.**
+
+Guias em <https://aguia-pescadora.etica.ai/>.
 
 ## Veja também
 - _[AIOps para Comunidade dos Países de Língua Portuguesa, 2019/01](https://github.com/fititnt/cplp-aiops)_
@@ -11,5 +15,5 @@ Documentação de toda pilha de soluções usadas na Plataforma Como Serviço
         - Caso encontre opções ainda mais baratas, nos avise!
 
 ## Licença
-Exceto onde não estiver explicitado contrário, toda informação contida neste
+Exceto onde estiver explicitado contrário, toda informação contida neste
 repositório é dedicada ao Domínio Publico.
