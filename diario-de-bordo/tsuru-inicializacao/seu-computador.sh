@@ -35,7 +35,27 @@ exit
 #              tudo
 #                config-charlie(uma-maquina-remota-com-tudo).yml
 #
-# -----------------------------------------------------------------------------#
+# ---------------------------------------------------------------------------- #
+# Tsuru Cluster
+# - 3 VPSs [CPU: 14][RAM: 32GB][Disco: 800GB SSD][Custo Mesal: < 100 BRL]
+# - Nó com Tsuru: Delta (não exclusivo)
+#     - Um dos motivos de escolher Delta (que tem dobro de potencia das demais)
+#       é também que se eventualmente o cluster tiver que ser reduzido (ex.
+#       ainda não ser tão usado para justificar tanta potencia) a gente poderia
+#       permanecer apenas com a Delta e só recriar outras no futuro)
+#
+# VPSs
+# - Águia Pescadora Delta: aguia-pescadora-delta.etica.ai
+#     - VPS (KVM), 6 vCPUs, 16GB RAM, 400GB SSD, Ubuntu Server 18.04 64bit, Contabo (Germany)
+#     - Diário de Bordo: https://github.com/EticaAI/aguia-pescadora/blob/master/diario-de-bordo/delta.sh
+# - Águia Pescadora Echo: aguia-pescadora-echo.etica.ai
+#     - VPS (KVM), 4 vCPUs, 8GB RAM, 200GB SSD, Ubuntu Server 18.04 64bit, Contabo (Germany)
+#     - Diário de Bordo: https://github.com/EticaAI/aguia-pescadora/blob/master/diario-de-bordo/echo.sh
+# - Águia Pescadora Foxtrot: aguia-pescadora-foxtrot.etica.ai
+#     - VPS (KVM), 4 vCPUs, 8GB RAM, 200GB SSD, Ubuntu Server 18.04 64bit, Contabo (Germany)
+#     - Diário de Bordo: https://github.com/EticaAI/aguia-pescadora/blob/master/diario-de-bordo/foxtrot.sh
+#
+# ---------------------------------------------------------------------------- #
 # LICENSE: Public Domain
 #   Except where otherwise noted, content on this server configuration and to
 #   the extent possible under law, Emerson Rocha has waived all copyright and
@@ -317,13 +337,19 @@ tsuru install-config-init
 #       - https://docs.tsuru.io/stable/installing/using-tsuru-installer.html#installing-on-already-provisioned-or-physical-hosts
 #       - https://docs.docker.com/machine/drivers/generic/
 
-#### TSURU 1.7a: Customiza Tsuru para instalar em 3 nós
+#### TSURU 1.7a: Customiza Tsuru para instalar em 3 nós ________________________
 ### @see https://docs.tsuru.io/stable/installing/using-tsuru-installer.html
 ### @see https://docs.tsuru.io/stable/installing/using-tsuru-installer.html#installing-on-already-provisioned-or-physical-hosts
+
+# Por favor, veja o arquivo config.yml. Ele contém informações adicionais que
+# não estão neste arquivo.
 vim config.yml
 
-# (...)
+# Dica 1: se você estiver procurando instalar apenas em uma máquina remota veja
+# config-charlie(uma-maquina-remota-com-tudo).yml
+
+# Dica 2: se nem mesmo tem uma máquina remota, veja
+# seu-computador-virtualbox-local.sh
 
 #### TSURU 1.8a: Ordena instação do Tsuru remotamente __________________________
-
-# (...)
+tsuru install-create -c config.yml
