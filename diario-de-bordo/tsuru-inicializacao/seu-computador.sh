@@ -1,0 +1,1 @@
+# @todo criar baseado em https://github.com/fititnt/cplp-aiops/blob/master/logbook/devel-fititnt-bravo.sh (fititnt, 2019-06-18 21:57 BRT)
