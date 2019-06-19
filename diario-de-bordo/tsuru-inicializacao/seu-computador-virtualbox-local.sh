@@ -11,7 +11,19 @@ exit
 #              ele sem precisar contratar servidor remoto. Isto pode ser uma
 #              ótima opção se você tem memória RAM suficiente e seu dispositivo
 #              permite virtualbox (talvez isso não seja possível em um telefone
-#              com Android, por exemplo).
+#              com Android, por exemplo, porém talvez, e só talvez, um Android
+#              com muita RAM, pelo menos uns 2G, talvez 3GB, muito espaço em
+#              disco, e com Debian instalado conseguiria).
+#
+#              Nesta documentação, resumidamente, você fará os seguintes passos:
+#                1.1b Instalar VirtualBox
+#                1.2 (não precisa)
+#                1.3 Instalar Docker
+#                1.4 Instalar Docker Engine
+#                1.5 Instalar Tsuru Client
+#                1.6 Gerar configurações com 'tsuru install-config-init' (opcional)
+#                1.7b Customiza Tsuru que será instalado localmente no Virtualbox
+#                1.8b: Ordena instalação do Tsuru em Virtualbox local
 #
 # -----------------------------------------------------------------------------#
 # LICENSE: Public Domain
@@ -47,22 +59,43 @@ exit
 # porque neste momento (2019-06-18) o Tsuru não tem pacote pre-compilado
 # para o Termux, por exemplo. Talvez isso mude nos próximos meses.
 
-##### VirtualBox _______________________________________________________________
+##### VIRTUALBOX 1.1b: Instalar VirtualBox _____________________________________
 # @see https://www.virtualbox.org/
 # @see https://www.diolinux.com.br/2019/02/como-instalar-o-virtualbox-6-no-linux.html
 # Antes de tentar este método, você precisará de VirtualBox instalado na sua
 # máquina. Veja https://www.virtualbox.org/.
 
-##### Tsuru Client _____________________________________________________________
-# @see https://tsuru-client.readthedocs.io/en/latest/
-# @see https://github.com/tsuru/tsuru-client/releases
+#### 1.2. (não precisa) ________________________________________________________
+# Ignore isto
 
-# TODO: documentar copiando do seu-computador.sh (fititnt, 2019-06-18 22:29 BRT)
+#### 1.3. DOCKER: Instalar Docker ______________________________________________
+# Siga os passos de 1.3 do arquivo seu-computador.sh
 
+#### 1.4. DOCKER: Instalar Docker Engine _______________________________________
+# Siga os passos de 1.4 do arquivo seu-computador.sh
 
-##### Instalar Tsuru em VirtualBox local _______________________________________
-# Simplesmente execute o seguinte comando e aguarde alguns minutos
+#### 1.5. TSURU: Instalar Tsuru Client _________________________________________
+# Siga os passos de 1.5 do arquivo seu-computador.sh
+
+#### TSURU 1.6: Gerar configurações com 'tsuru install-config-init' (opcional) _
+# Siga os passos de 1.5 do arquivo seu-computador.sh
+
+#### TSURU 1.7b:  Customiza Tsuru que será instalado localmente no Virtualbox (opcional) __
+# É possível customizar alguns parametros antes de instalar o Tsuru localmente
+# no virtualbox. Como o passo 1.8 tem padrões razoáveis se você não escolher
+# instalar em servidores remotos é possível que ignore completamente não tanto
+# os passos 1.6 como 1.7.b
+
+#### TSURU 1.8: Ordena instalação do Tsuru em Virtualbox local _________________
+
+# Simplesmente execute o comando a seguir que o tsuru tentará usar virtualbox
+# e configurações padrões que ele teria gerado usando
+# 'tsuru install-config-init' sem ediçõex extras suas
+
 tsuru install-create
 
-# Pronto! A maior dificuldade deste método é conseguir ter instalado os
-# requisitos (VirtualBox e tsuru-client) em sua plataforma.
+# Se você não ignorou o passo 1.7b e customizou os arquivos, seu comando seria
+# tsuru install-create -c install-config.yml -e install-compose.yml
+
+# Pronto! Se os requisitos já estavam instalados, dependendo de sua velocidade
+# de internet logo você terá como testar o Tsuru localmente!

@@ -15,13 +15,25 @@ exit
 #              Baseado no arquivo que instalou a Águia Pescadora Charlie:
 #                - https://github.com/fititnt/cplp-aiops/blob/master/logbook/devel-fititnt-bravo.sh
 #
-#              Nesta documentação, resumidamente, você precisará instalar na sua
-#              sua máquina local:
-#                1.1 Criar chave SSH sem senha
+#              Caso você queira instalar em 1 servidor (em vez de 3, como nosso
+#              exemplo) recomendamos que veja o fititnt/cplp-aiops ou o
+#              arquivo config-charlie(uma-maquina-remota-com-tudo).yml
+#
+#              Nesta documentação, resumidamente, você fará os seguintes passos:
+#                1.1a Criar chave SSH sem senha
 #                1.2 Autorizar chave em todos os nós remotos de Tsuru
 #                1.3 Instalar Docker
 #                1.4 Instalar Docker Engine
 #                1.5 Instalar Tsuru Client
+#                1.6 Gerar configurações com 'tsuru install-config-init' (opcional)
+#                1.7a Customiza Tsuru para instalar em 3 nós
+#                1.8a Ordena instação do Tsuru remotamente
+#
+#              O arquivo a seguir assume 3 máquinas remotas (nosso caso)
+#                config.yml
+#              Este outro arquivo assume que você teria interesse em um nó com
+#              tudo
+#                config-charlie(uma-maquina-remota-com-tudo).yml
 #
 # -----------------------------------------------------------------------------#
 # LICENSE: Public Domain
@@ -41,7 +53,7 @@ exit
 #   Send e-mail to Emerson Rocha: rocha(at)ieee.org.
 ################################################################################
 
-#### 1.1. CHAVES SSH: Criar chave SSH sem senha ________________________________
+#### 1.1a. CHAVES SSH: Criar chave SSH sem senha ________________________________
 ### @see https://www.digitalocean.com/community/tutorials/como-configurar-chaves-ssh-no-ubuntu-18-04-pt
 ### @see https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 
@@ -66,7 +78,7 @@ ssh-keygen -t rsa -b 4096 -C "aguia-pescadora-tsuru.no-reply@etica.ai" -f ~/.ssh
 # Private key: ~/.ssh/id_rsa-aguia-pescadora-tsuru
 # Public key: ~/.ssh/id_rsa-aguia-pescadora-tsuru.pub
 
-# **************** COMO PEDIR AJUDA SE A ETAPA 1.1. DER ERRADO *************** #
+# **************** COMO PEDIR AJUDA SE A ETAPA 1.1a. DER ERRADO *************** #
 # Em fóruns ou no Bing (que diferente do google até tem via free basics)
 # você pode procurar por 'como criar chave SSH + NomeDoMeuSistemaOperacional'
 #
@@ -257,3 +269,61 @@ tsuru --version
 # Opcional: se quiser pode adicionar misc/bash-completion para autocompletar
 #           alguns comandos caso seu terminal seja bash e misc/zsh-completion
 #           se for zsh. Na maioria das distribuições linux tende a ser bash
+
+# **************** COMO PEDIR AJUDA SE A ETAPA 1.5. DER ERRADO *************** #
+# Diferente de docker e outros passos, o número de pessoas que tem experiencia
+# mínima com Tsuru ao ponto de crar algo como você está fazendo é menor.
+# Além da documentação oficial (e também com alguém da Etica.AI) como
+# Emerson Rocha, você pode ver os canais oficiais em https://tsuru.io/. Um nesse
+# caso é o Gitter em https://gitter.im/tsuru/tsuru. A maioria das pessoas lá
+# irá falar em inglês, porém a maioria dos criadores do Tsuru também fala
+# português pois são do Brasil.
+
+#### TSURU 1.6: Gerar configurações com 'tsuru install-config-init' (opcional) _
+### @see https://docs.tsuru.io/stable/installing/using-tsuru-installer.html
+### @see https://docs.tsuru.io/stable/installing/using-tsuru-installer.html#installing-on-already-provisioned-or-physical-hosts
+### @see https://docs.docker.com/machine/drivers/generic/
+
+# Vá para uma pasta temporaria qualquer no seu computador local. nesse exemplo
+# usamos ~/tmp
+cd ~/tmp
+
+tsuru install-config-init
+# Dois arquivos serão gerados, vide
+# $ tree
+# .
+# ├── install-compose.yml
+# └── install-config.yml
+
+# Tradução rapida da documentação oficial sobre os arquivos
+#   "Isso gerará dois arquivos no diretório atual: install-config.yml e
+#   install-compose.yml. No primeiro, você pode definir o driver da máquina de
+#   encaixe e configurações como a CPU e a memória da máquina e configurações
+#   específicas de tsuru, como o aprovisionador padrão, portas HTTP / HTTPS,
+#   cotas de usuários e ativar ou desativar o painel. O segundo arquivo inclui
+#   configurações para cada componente tsuru, como redis e gandalf. Você pode
+#   alterar configurações como versão, porta e montagens para cada um."
+
+# DICA: caso queira ver os arquivos que a minha versão criou e não foram
+#       customizados eles estão em
+#       diario-de-bordo/tsuru-inicializacao/config-init-padrao-sem-edicao
+
+# DICA: caso queira ver outros exemplos de arquivos, veja a própria documentação
+#       em https://docs.tsuru.io/stable/installing/using-tsuru-installer.html
+#       Ela tem pelo menos 3 exemplos, um deles assume que você usa o IaaS
+#       Amazon Web Servces e o outro que usa a Digital Ocean. No nosso caso
+#       O melhor exemplo que você deve se basear é o
+#       "Installing on already provisioned (or physical) hosts" e os links:
+#       - https://docs.tsuru.io/stable/installing/using-tsuru-installer.html#installing-on-already-provisioned-or-physical-hosts
+#       - https://docs.docker.com/machine/drivers/generic/
+
+#### TSURU 1.7a: Customiza Tsuru para instalar em 3 nós
+### @see https://docs.tsuru.io/stable/installing/using-tsuru-installer.html
+### @see https://docs.tsuru.io/stable/installing/using-tsuru-installer.html#installing-on-already-provisioned-or-physical-hosts
+vim config.yml
+
+# (...)
+
+#### TSURU 1.8a: Ordena instação do Tsuru remotamente __________________________
+
+# (...)
