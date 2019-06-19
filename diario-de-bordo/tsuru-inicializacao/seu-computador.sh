@@ -17,13 +17,11 @@ exit
 #
 #              Nesta documentação, resumidamente, você precisará instalar na sua
 #              sua máquina local:
-#                1.1 Par de chave SSH sem senha (isso é necessário em 2.1!)
-#                1.2 Instalar Docker
-#                1.3 Instalar Docker Engine
-#
-#              Nesta documentação, resumidamente, você precisará preparar o
-#              seguinte em todos os servidores remotos
-#                2.1 Ter uma chave privada (sem senha) previamente autorizada
+#                1.1 Criar chave SSH sem senha
+#                1.2 Autorizar chave em todos os nós remotos de Tsuru
+#                1.3 Instalar Docker
+#                1.4 Instalar Docker Engine
+#                1.5 Instalar Tsuru Client
 #
 # -----------------------------------------------------------------------------#
 # LICENSE: Public Domain
@@ -43,9 +41,9 @@ exit
 #   Send e-mail to Emerson Rocha: rocha(at)ieee.org.
 ################################################################################
 
-#### 1.1. CHAVES SSH: Par de chave SSH sem senha _______________________________
+#### 1.1. CHAVES SSH: Criar chave SSH sem senha ________________________________
+### @see https://www.digitalocean.com/community/tutorials/como-configurar-chaves-ssh-no-ubuntu-18-04-pt
 ### @see https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
-### @see https://docs.tsuru.io/stable/installing/using-tsuru-installer.html
 
 # O Tsuru por padrão tem suporte mais facilitado para alguns IaaS mais populares
 # do mercado, como a Amazon Web Services e a Digital Ocean. Porém em especial
@@ -77,9 +75,44 @@ ssh-keygen -t rsa -b 4096 -C "aguia-pescadora-tsuru.no-reply@etica.ai" -f ~/.ssh
 #       secreto e jamais sair do seu computador. Se você sem querer compartilhou
 #       ele, precisará refazer sua chave e remover todos os locais que a versão
 #       publica dele davam acesso
-#
 
-#### 1.2. DOCKER: Instalar Docker ______________________________________________
+#### 1.2. CHAVES SSH 2: autorizar chave em todos os nós remotos de Tsuru _______
+### @see https://www.digitalocean.com/community/tutorials/como-configurar-chaves-ssh-no-ubuntu-18-04-pt
+### @see https://linux.die.net/man/1/ssh-copy-id
+### @see Execute o comando 'man ssh-copy-id' para ler o manual
+
+# O conteúdo da chave pública (geralmente termina com .pub) deve estar em todos
+# os servidores que você quer que o tsuru acesse mais tarde no arquivo
+# /root/.ssh/authorized_keys
+
+# Uma forma de copiar sua chave publica é usando o programa ssh-copy-id.
+# Troque 'aguia-pescadora-tsuru' e root@aguia-pescadora-XXXXXX.etica.ai para
+# sua respectiva chave publica e servidor remoto
+
+ssh-copy-id -i ~/.ssh/id_rsa-aguia-pescadora-tsuru.pub root@aguia-pescadora-delta.etica.ai
+ssh-copy-id -i ~/.ssh/id_rsa-aguia-pescadora-tsuru.pub root@aguia-pescadora-echo.etica.ai
+ssh-copy-id -i ~/.ssh/id_rsa-aguia-pescadora-tsuru.pub root@aguia-pescadora-foxtrot.etica.ai
+
+# Teste se a chave está funcionando. O Seguinte comando deve funcionar
+# SEM pedir senha para cada um dos servidores remotos que você quer instalar
+# o Tsuru. Aqui nosso exemplo
+
+ssh -i ~/.ssh/id_rsa-aguia-pescadora-tsuru root@aguia-pescadora-charlie.etica.ai
+ssh -i ~/.ssh/id_rsa-aguia-pescadora-tsuru root@aguia-pescadora-echo.etica.ai
+ssh -i ~/.ssh/id_rsa-aguia-pescadora-tsuru root@aguia-pescadora-foxtrot.etica.ai
+
+# **************** COMO PEDIR AJUDA SE A ETAPA 1.2. DER ERRADO *************** #
+# Suas perguntas tenderão a ser "SSH sem senha". Esse tipo de coisa pelo menos
+# em grupos maiores tende a ter alguém para ajudar você. Assim como dito
+# no passo 1.1, não deixe o arquivo '-----BEGIN RSA PRIVATE KEY-----' sair
+# do seu computador.
+#
+# Um erro que talvez você tenha é ter copiado a chave publica errada. Por isso
+# compare o arquivo /root/.ssh/authorized_keys em todos os servidores remotos.
+# Em alguns casos, talvez o arquivo seja "authorized_keys2" em vez de
+# "authorized_keys"
+
+#### 1.3. DOCKER: Instalar Docker ______________________________________________
 ### @see https://docs.docker.com/install/linux/docker-ce/ubuntu/
 
 # Remova versões antigas de docker. Ok se o comando seguinte der erros de
@@ -136,11 +169,11 @@ sudo docker run hello-world
 #    For more examples and ideas, visit:
 #     https://docs.docker.com/get-started/
 
-# **************** COMO PEDIR AJUDA SE A ETAPA 1.2. DER ERRADO *************** #
+# **************** COMO PEDIR AJUDA SE A ETAPA 1.3. DER ERRADO *************** #
 # Em fóruns de ajuda, pergunte:
 # Como instalo docker no 'NOME DO SEU SISTEMA OPERACIONAL'? Tentei desse modo...
 
-#### 1.3. DOCKER: Instalar Docker Engine _______________________________________
+#### 1.4. DOCKER: Instalar Docker Engine _______________________________________
 ### @see https://docs.docker.com/machine/install-machine/
 ### @see https://github.com/docker/machine/releases/
 
@@ -165,23 +198,62 @@ curl -L https://github.com/docker/machine/releases/download/v0.16.1/docker-machi
 # Execute o comando a seguir para ver se tem está com docker-machine operacional
 docker-machine -v  # docker-machine version 0.16.1, build cce350d7
 
-# **************** COMO PEDIR AJUDA SE A ETAPA 1.3. DER ERRADO *************** #
+# **************** COMO PEDIR AJUDA SE A ETAPA 1.4. DER ERRADO *************** #
 # Em fóruns de ajuda, pergunte:
 # Como instalo Docker Engine no 'NOME DO SEU SISTEMA OPERACIONAL'? Tentei desse modo...
 
+#### 1.5. TSURU: Instalar Tsuru Client _________________________________________
+### @see https://docs.tsuru.io/stable/installing/using-tsuru-installer.html
+### @see https://tsuru-client.readthedocs.io/en/latest/installing.html
+### @see https://github.com/tsuru/tsuru-client/releases
 
+# É aqui que a máquica começa! Um usuário de Tsuru comum precisaria apenas
+# do tsuru client (ou mesmo quem faz via git, nem mesmo tsuru client) mas você
+# já deixou chaves prontas em servidores remotos, instalou docker e
+# docker-machine porque você não é apenas um usuário comum, você está criando
+# seu próprio cluster!
 
-#.....
-#### CHAVE SSH: adiciona em aguia-pescadora.etica.ai ___________________________
+# Vá para uma pasta temporaria qualquer no seu computador local. nesse exemplo
+# usamos ~/tmp
+cd ~/tmp
 
-cat ~/.ssh/id_rsa-aguia-pescadora-tsuru.pub
-# Copie o conteúdo, logue em charlie
-ssh root@aguia-pescadora-charlie.etica.ai
+# Conforme https://tsuru-client.readthedocs.io/en/latest/installing.html
+# a documentação dará várias alternativas de como instalar o Tsuru client
+# em seu sistema operacional. Em https://github.com/tsuru/tsuru-client/releases
+# tem até mesmo executável para windows. No caso específico deste guia
+# está sendo usado localmente um Ubuntu 16.04, e, ao menos neste momento,
+# uma das opções recomendadas do Tsuru Client via uso de
+# 'sudo apt-add-repository ppa:tsuru/ppa' está desatualziada o suficiente
+# para recomendarmos que baixe o binário. Talvez ele mude no futuro, então
+# se faz muito tempo desde que esse guia foi criado pode valer a pena
+# olhar documentação oficial.
 
-# cole o conteúdo ao final da ~/.ssh/authorized_keys
-vim ~/.ssh/authorized_keys
-exit
+# Comentarios feitos, neste momento exato, 2019-06-19 01:00 BRT, em
+# https://github.com/tsuru/tsuru-client/releases é escolhido o seguinte
+wget https://github.com/tsuru/tsuru-client/releases/download/1.7.0-rc1/tsuru_1.7.0-rc1_linux_amd64.tar.gz
 
-# Teste se a chave está funcionando. O Seguinte comando deve funcionar
-# SEM pedir senha (nem de servidor remoto, nem de chave SSH)
-ssh -i ~/.ssh/id_rsa-aguia-pescadora-tsuru root@aguia-pescadora-charlie.etica.ai
+# O comando a seguir descompacta o arquivo baixado
+tar -vzxf tsuru_1.7.0-rc1_linux_amd64.tar.gz
+
+## fititnt at bravo in ~/tmp [1:04:49]
+# $ tree
+# .
+# ├── misc
+# │   ├── bash-completion
+# │   └── zsh-completion
+# ├── tsuru
+
+# O arquivo 'tsuru' deve ser adicionado ao seu PATH. No caso do Ubuntu, pode
+# simplesmente mover ele para algum outro lugar, como /usr/local/bin, com
+# o segunte comando
+sudo mv tsuru /usr/local/bin
+
+# Feito isso, teste com o seguinte comando qual versão do seu tsuru client
+tsuru --version
+# No seu caso já pode ser uma versão diferente.
+#   tsuru version 1.7.0-rc1.
+# No seu pode ser diferente
+
+# Opcional: se quiser pode adicionar misc/bash-completion para autocompletar
+#           alguns comandos caso seu terminal seja bash e misc/zsh-completion
+#           se for zsh. Na maioria das distribuições linux tende a ser bash
