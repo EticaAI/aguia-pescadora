@@ -1,0 +1,57 @@
+################################################################################
+# Arquivo config.yml que criou inicialmente o Tsuru Cluster Águia Pescadora
+#
+# Para entender mais sobre este arquivo, por favor leia também o arquivo
+# seu-computador.sh que está neste mesmo diretório.
+# Note que este arquivo foi criado em torno de 20 dias depois do primeiro MVP
+# que o mantenedor inicial fez (no caso, com a Águia Pescadora Charlie) e
+# possívelmente teria outras melhorias. Porém ao menos serve como pontapé
+# inicial. Recomedamos também que acompanhe o histórico de commits no
+# repositório principal em https://github.com/EticaAI/aguia-pescadora para
+# ver a evolução. Este arquivo em especial será comentado em "Como re-criar um
+# produto mínimo viável do Cluster Tsuru Águia Pescadora" no link
+# https://github.com/EticaAI/aguia-pescadora/issues/5.
+#
+# Em especial, o mantenedor inicial não tem experiência suficiente para dizer
+# se, mesmo com grande poder de processamento que tem e de baixo custo (isto é
+# neste momento [Nós: 3][CPU: 14][RAM: 32GB][Disco: 800GB SSD]
+# [Custo: < 100 BRL/mês]), talvez este arranjo inicial não seja o mais
+# eficiente.
+#
+# -----------------------------------------------------------------------------#
+# LICENSE: Public Domain
+#   Except where otherwise noted, content on this server configuration and to
+#   the extent possible under law, Emerson Rocha has waived all copyright and
+#   related or neighboring rights to this work to Public Domain
+#
+# MAINTAINER: Emerson Rocha <rocha(at)ieee.org>
+#   Keep in mind that several people help with suggestions, testing, bugfixes
+#   and inspiration without get names noted in places that most software
+#   developers look. I'm saying this in special for people who help over
+#   Facebook discussions. Even the ones without a personal computer yet and/or
+#   with limited access to internet.
+#
+# SECURITY:
+#   Reporting a Vulnerability:
+#   Send e-mail to Emerson Rocha: rocha(at)ieee.org.
+################################################################################
+name: 'aguia-pescadora'
+hosts:
+    core:
+        size: 1
+        driver:
+            options:
+                generic-ip-address: ["173.249.10.99"]
+                generic-ssh-key: ["/home/fititnt/.ssh/id_rsa-aguia-pescadora-tsuru"]
+    apps:
+        size: 3
+        dedicated: false
+        driver:
+            options:
+                generic-ip-address: ["173.249.10.99", "167.86.127.220", "167.86.127.225"]
+                generic-ssh-key: ["/home/fititnt/.ssh/id_rsa-aguia-pescadora-tsuru"]
+driver:
+    name: generic
+    options:
+        generic-ssh-port: 22
+        generic-ssh-user: root
