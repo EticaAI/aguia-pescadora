@@ -41,6 +41,7 @@ exit
 # implicam em logar em um usuario não-root e executar como sudo. Mas nesta da
 # é por root mesmo nesse momento.
 ssh root@167.86.127.220
+ssh root@aguia-pescadora-echo.etica.ai
 
 ### Atualizar o sistema operacional_____________________________________________
 # O sistema operacional (neste caso, Ubuntu) normalmente não vai estar 100%
@@ -69,6 +70,13 @@ sudo vi /etc/hosts
 #           próprio Brasil tem mais de um fuso horário)
 sudo timedatectl set-timezone UTC
 
+### Adiciona ao menos uma chave de administrador _______________________________
+# Para fazer acesso sem senha de root (e uma chave extra além da usada 
+# inicialmente pelo Tsuru)
+
+## O comando a seguir é executado da sua maquina local, não no servidor!
+ssh-copy-id -i ~/.ssh/id_rsa-rocha-eticaai-2019.pub root@aguia-pescadora-echo.etica.ai
+
 ### Criar Swap & ajusta Swappiness______________________________________________
 ## TODO: setup swap from 2GB (defalt from Contabo) to 8GB (fititnt, 2019-06-16 01:44 BRT)
 
@@ -89,26 +97,6 @@ sudo timedatectl set-timezone UTC
 #        funcionamento em sistemas com Swap sem parametro especial, vide
 #        https://github.com/kubernetes/kubernetes/issues/53533
 #        (fititnt, 2019-06-17 02:16 BRT)
-
-### Adiciona chave (pelo menos um super admin) _________________________________
-## Cheque se já existe o arquivo authorized_keys
-ls -lha /root/.ssh/authorized_keys
-
-## Caso não exista, crie
-sudo mkdir -p /root/.ssh/
-sudo chmod 700 /root/.ssh/
-sudo touch /root/.ssh/authorized_keys
-sudo chmod 600 /root/.ssh/authorized_keys
-
-## Troque para chave publica de cada um dos administradores, o arquivo PUB
-#    cat ~/.ssh/id_rsa.pub
-# Neste caso usado para inicializar ao menos o
-#   cat ~/.ssh/id_rsa-rocha-eticaai-2019.pub
-sudo echo "ssh-rsa (...chave...)== email@dominio.tdl" >> /root/.ssh/authorized_keys
-
-## Reveja as chaves em /root/.ssh/authorized_keys e tenha certeza que esta tudo
-## como deveria
-sudo cat /root/.ssh/authorized_keys
 
 #------------------------------------------------------------------------------#
 # SEÇÃO TSURU: ADIÇÃO DA CHAVE SSH PARA SER CONFIGURADO REMOTAMENTE            #

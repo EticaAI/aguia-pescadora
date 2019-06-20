@@ -41,6 +41,7 @@ exit
 # implicam em logar em um usuario não-root e executar como sudo. Mas nesta da
 # é por root mesmo nesse momento.
 ssh root@173.249.10.99
+ssh root@aguia-pescadora-delta.etica.ai
 
 ### Atualizar o sistema operacional_____________________________________________
 # O sistema operacional (neste caso, Ubuntu) normalmente não vai estar 100%
@@ -60,7 +61,7 @@ sudo vi /etc/hosts
 ## Adicione
 # 127.0.0.1 aguia-pescadora-delta.etica.ai  aguia-pescadora-delta
 
-### Define horário padrão de sistema_____________________________________________
+### Define horário padrão de sistema____________________________________________
 # Vamos definir como horário padrão de servidor o UTC.
 # Motivo 1: para aplicações de usuário, é mais fácil calcular a partir do horário
 #           Zulu
@@ -69,15 +70,12 @@ sudo vi /etc/hosts
 #           próprio Brasil tem mais de um fuso horário)
 sudo timedatectl set-timezone UTC
 
-### Idioma padrão do servidor: português________________________________________
-# Vamos definir o idioma padrão (e também outras configurações de localização)
-# para o português
-# Motivo 1: aguia-pescadora é voltada para pessoas falantes de português
-# Motivo 2: mesmo que pessoas administradoras do servidor saibam inglês as
-#           pessoas que criam aplicações (principalmente as que usam ferramentas
-#           com menos abstrações, como as por shell) poderiam ter mais
-#           dificuldades, e nosso foco aqui é facilitar para todo mundo
-sudo apt install language-pack-pt language-pack-pt-base
+### Adiciona ao menos uma chave de administrador _______________________________
+# Para fazer acesso sem senha de root (e uma chave extra além da usada 
+# inicialmente pelo Tsuru)
+
+## O comando a seguir é executado da sua maquina local, não no servidor!
+ssh-copy-id -i ~/.ssh/id_rsa-rocha-eticaai-2019.pub root@aguia-pescadora-delta.etica.ai
 
 ## TODO: remover o language-pack-pt de Delta. Usuarios finais
 #        não irão acessar o host, e até mesmo administradores tenderão
@@ -104,26 +102,6 @@ sudo apt install language-pack-pt language-pack-pt-base
 #        https://github.com/kubernetes/kubernetes/issues/53533
 #        (fititnt, 2019-06-17 02:16 BRT)
 
-### Adiciona chave (pelo menos um super admin) _________________________________
-## Cheque se já existe o arquivo authorized_keys
-ls -lha /root/.ssh/authorized_keys
-
-## Caso não exista, crie
-sudo mkdir -p /root/.ssh/
-sudo chmod 700 /root/.ssh/
-sudo touch /root/.ssh/authorized_keys
-sudo chmod 600 /root/.ssh/authorized_keys
-
-## Troque para chave publica de cada um dos administradores, o arquivo PUB
-#    cat ~/.ssh/id_rsa.pub
-# Neste caso usado para inicializar ao menos o
-#   cat ~/.ssh/id_rsa-rocha-eticaai-2019.pub
-sudo echo "ssh-rsa (...chave...)== email@dominio.tdl" >> /root/.ssh/authorized_keys
-
-## Reveja as chaves em /root/.ssh/authorized_keys e tenha certeza que esta tudo
-## como deveria
-sudo cat /root/.ssh/authorized_keys
-
 #------------------------------------------------------------------------------#
 # SEÇÃO TSURU: ADIÇÃO DA CHAVE SSH PARA SER CONFIGURADO REMOTAMENTE            #
 #                                                                              #
@@ -134,6 +112,3 @@ sudo echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC7erwMfyTSO7xn8axjAp2NTbBHjDVdu
 ## Reveja as chaves em /root/.ssh/authorized_keys e tenha certeza que esta tudo
 ## como deveria
 sudo cat /root/.ssh/authorized_keys
-
-### Não documentado ____________________________________________________________
-sudo mkdir /backups
