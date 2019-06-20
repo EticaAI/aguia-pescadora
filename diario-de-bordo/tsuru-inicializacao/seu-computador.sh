@@ -447,3 +447,11 @@ tsuru role-assign AllowAll rocha@ieee.org
 
 # Humm... isso funcionou com a Charlie em https://github.com/fititnt/cplp-aiops/blob/master/logbook/aguia-pescadora-charlie.sh
 # porém a versão do Tsuru era a stable 1.6.0. A atual 1.7.0-rc1.
+
+## Temporario
+# Renomeei pasta ~/.tsuru e simplesmente re-executei o mesmo comando sem
+# desistalar o tsuru dos hosts remotos (o que seria uma boa ideia).
+tsuru install-create -c config.yml
+
+# Log desta resposta está em tsuru-inicializacao-2(reinstall).log. Porém é
+# o erro é relativamente previsivel
