@@ -28,6 +28,7 @@ exit
 #                1.6 Gerar configurações com 'tsuru install-config-init' (opcional)
 #                1.7a Customiza Tsuru para instalar em 3 nós
 #                1.8a Ordena instação do Tsuru remotamente
+#                1.9 Ordena instação do Tsuru remotamente
 #
 #              O arquivo a seguir assume 3 máquinas remotas (nosso caso)
 #                config.yml
@@ -353,3 +354,96 @@ vim config.yml
 
 #### TSURU 1.8a: Ordena instação do Tsuru remotamente __________________________
 tsuru install-create -c config.yml
+
+# Veja o arquivo tsuru-inicializacao.log nesta mesma pasta para ver o log que
+# gerou a instalação inicial.
+
+#### TSURU 1.9: Primeiro login administrativo no Tsuru _________________________
+
+# Ao acessar a página http://173.249.10.99:8080/, tivemos este resultado a
+# seguir. Ele está em inglês, mas vou comentar em português caso você não saiba
+# e não tenha tradutor automático neste momento.
+
+# ............................................................................ #
+##
+## Welcome to tsuru!
+## tsuru is an open source PaaS, that aims to make it easier for developers to run their code in production.
+##
+## Installing
+## Our documentation contains a guide for installing tsuru clients using package managers on Mac OS X, Ubuntu and ArchLinux, or build from source on any platform supported by Go: docs.tsuru.io/en/stable/using/install-client.html.
+##
+## Please ensure that you install the tsuru client, and then continue this guide with the configuration, user and team creation and the optional SSH key handling.
+##
+## Configuring
+## In order to use this tsuru server, you need to add it to your set of targets:
+##
+## $ tsuru target-add default http://173.249.10.99:8080 -s
+## tsuru supports multiple targets, the -s flag tells the client to add and set the given endpoint as the current target.
+##
+## Create a user
+## After configuring the tsuru target that you wanna use, it's now needed to create a user:
+##
+## $ tsuru user-create <your-email>
+## The command will as for your password twice, and then register your user in the tsuru server.
+##
+## After creating your user, you need to authenticate with tsuru, using the tsuru login command.
+##
+## $ tsuru login
+## It will ask for your email and password, you can optionally provide your email as a parameter to the command.
+##
+## Ensure you're member of at least one team
+## In order to create an application, a user must be member of at least one team. You can see the teams that you are a member of by running the team-list command:
+##
+## $ tsuru team-list
+## If this command doesn't return any team for you, it means that you have to create a new team before creating your first application:
+##
+## $ tsuru team-create <team-name>
+## Build and deploy your application
+## Now you're ready to deploy an application to this tsuru server, please refer to the tsuru documentation for more details: docs.tsuru.io/en/stable/using/python.html.
+# ............................................................................ #
+
+# No meu caso, como admin, provavelmente o Tsuru já fez isso por mim, porém
+# outros usuários talvez teriam que fazê-lo. Creio que é algo que teremos
+# que documentar para o Águia Pescadora. A seguir o aviso que eu tenho
+# fititnt at bravo in /alligo/code/eticaai/aguia-pescadora/diario-de-bordo/tsuru-inicializacao on git:master x [20:39:36]
+# $ tsuru target-add default http://173.249.10.99:8080 -s
+# Error: Target label provided already exists
+
+# O comando a seguir cria o primeiro usuario. Vou usar meu e-mail, mas você
+# deveria usar o seu. Ele vai pedir senha e reconfirmação
+tsuru user-create rocha@ieee.org
+# Resultado:
+#  Password:
+#  Confirm:
+#  User "rocha@ieee.org" successfully created!
+
+# O próximo comando é para se logar no Tsuru remoto padrão (no caso temos apenas
+# um, a Charlie movi para outra pasta no meu ~/.tsuru). O comando 'tsuru login'
+# Também pode aceitar o e-mail como parâmetro, mas vou usar sem nesse momento
+tsuru login
+# Resultado
+#   Email: rocha@ieee.org
+#   Password:
+#   Successfully logged in!
+
+# Vamos ver se já existe algum time criado
+tsuru team-list
+# Resposta: vazio (não tem times existentes)
+
+# Conforme documentação, seria necessario criar um time, porém tenho erro sem
+# informação extra além de 'Error:'
+tsuru team-create EticaAI
+# Resultado
+#   Error:
+
+# E sim, também estou documentando meu passo a passo porque pode servir para
+# reportar depois para o time do Tsuru o que pode ser melhorado na documentação
+# da versão atual
+
+# Tentando dar permissão total para meu usuário, talvez seja isso que esteja
+# impedindo seguir adiante.
+tsuru role-assign AllowAll rocha@ieee.org
+# Error: You don't have permission to do this action
+
+# Humm... isso funcionou com a Charlie em https://github.com/fititnt/cplp-aiops/blob/master/logbook/aguia-pescadora-charlie.sh
+# porém a versão do Tsuru era a stable 1.6.0. A atual 1.7.0-rc1.
