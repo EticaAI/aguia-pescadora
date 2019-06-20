@@ -28,7 +28,7 @@ exit
 #                1.6 Gerar configurações com 'tsuru install-config-init' (opcional)
 #                1.7a Customiza Tsuru para instalar em 3 nós
 #                1.8a Ordena instação do Tsuru remotamente
-#                1.9 Ordena instação do Tsuru remotamente
+#                1.9 Cria super administrador e faz um Olá Mundo do Tsuru
 #
 #              O arquivo a seguir assume 3 máquinas remotas (nosso caso)
 #                config.yml
@@ -130,7 +130,7 @@ ssh-copy-id -i ~/.ssh/id_rsa-aguia-pescadora-tsuru.pub root@aguia-pescadora-foxt
 # SEM pedir senha para cada um dos servidores remotos que você quer instalar
 # o Tsuru. Aqui nosso exemplo
 
-ssh -i ~/.ssh/id_rsa-aguia-pescadora-tsuru root@aguia-pescadora-charlie.etica.ai
+ssh -i ~/.ssh/id_rsa-aguia-pescadora-tsuru root@aguia-pescadora-delta.etica.ai
 ssh -i ~/.ssh/id_rsa-aguia-pescadora-tsuru root@aguia-pescadora-echo.etica.ai
 ssh -i ~/.ssh/id_rsa-aguia-pescadora-tsuru root@aguia-pescadora-foxtrot.etica.ai
 
@@ -358,4 +358,9 @@ tsuru install-create -c config.yml
 # Veja o arquivo tsuru-inicializacao.log nesta mesma pasta para ver o log que
 # gerou a instalação inicial.
 
-#### TSURU 1.9: Primeiro login administrativo no Tsuru _________________________
+#### TSURU 1.9: Cria super administrador e faz um Olá Mundo do Tsuru ___________
+
+# Vamos criar ao menos um super administrador (troque para seu e-mail)
+tsuru user-create rocha@ieee.org
+tsuru role-assign AllowAll rocha@ieee.org
+

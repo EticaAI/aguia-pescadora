@@ -108,3 +108,10 @@ sudo echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC7erwMfyTSO7xn8axjAp2NTbBHjDVdu
 ## Reveja as chaves em /root/.ssh/authorized_keys e tenha certeza que esta tudo
 ## como deveria
 sudo cat /root/.ssh/authorized_keys
+
+#------------------------------------------------------------------------------#
+# SEÇÃO TSURU: DEPENDENCIAS DO DOCKER MACHINE (É USADO PELO TSURU)             #
+#------------------------------------------------------------------------------#
+## Resolve o erro do Docker Machine
+# Setting Docker configuration on the remote daemon... \n Error running SSH command: ssh command error: \n command : netstat -tln \n err     : exit status 127 \n output  : bash: netstat: command not found
+sudo apt install net-tools
