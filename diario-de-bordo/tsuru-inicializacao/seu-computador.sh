@@ -355,12 +355,112 @@ vim config.yml
 #### TSURU 1.8a: Ordena instação do Tsuru remotamente __________________________
 tsuru install-create -c config.yml
 
-# Veja o arquivo tsuru-inicializacao.log nesta mesma pasta para ver o log que
-# gerou a instalação inicial.
+# Veja arquivo tsuru-inicializacao.log nesta mesma pasta para ver log completo
+# Demorou em torno de 22 min (o tempo pode ser bem diferente, em especial
+# conforme a velocidade da internet do servidor remoto)
+
+#
+# Resultado:
+#
+#   (uma lista grande de comandos. Aqui apenas o que aparece no final.)
+#
+#   Configured default user:
+#   Username: admin@example.com
+#   Password: admin123
+#   Apps Hosts:
+#   +-----------------------------+---------+---------+----------------------------------+
+#   | Address                     | IaaS ID | Status  | Metadata                         |
+#   +-----------------------------+---------+---------+----------------------------------+
+#   | https://167.86.127.220:2376 |         | ready   | LastSuccess=2019-06-21T04:54:05Z |
+#   |                             |         |         | pool=theonepool                  |
+#   +-----------------------------+---------+---------+----------------------------------+
+#   | https://167.86.127.225:2376 |         | waiting | pool=theonepool                  |
+#   +-----------------------------+---------+---------+----------------------------------+
+#   | https://173.249.10.99:2376  |         | waiting | pool=theonepool                  |
+#   +-----------------------------+---------+---------+----------------------------------+
+#   Apps:
+#   +-----------------+------------+--------------------------------------+
+#   | Application     | Units      | Address                              |
+#   +-----------------+------------+--------------------------------------+
+#   | tsuru-dashboard | 1 starting | tsuru-dashboard.173.249.10.99.nip.io |
+#   +-----------------+------------+--------------------------------------+
+
+# Neste momento você pode entrar em uma URL que será parecida com a
+# tsuru-dashboard.173.249.10.99.nip.io, com usuário admin@example.com
+# e senha admin123. É recomendado trocar isso!!
+
+# No próximo passo você irá criar pelo menos um usuário administrador e fazer
+# testes básicos na plataforma. Eventualmente poderá fazer outras customizações
+# que vão além deste guia inicial, porém pelo menos você saberá que sim, é
+# possível
 
 #### TSURU 1.9: Cria super administrador e faz um Olá Mundo do Tsuru ___________
 
-# Vamos criar ao menos um super administrador (troque para seu e-mail)
-tsuru user-create rocha@ieee.org
-tsuru role-assign AllowAll rocha@ieee.org
+## TODO: as instruções nesta etapa provavelmente podem ser simplificadas
+##       ou no mínimo deveriam ser revisadas por pessoas com mais experiência
+##       no Tsuru. Se este aviso aidna estiver aqui, quer dizer que
+##       não houve revisão por pelo menos outra pessoa diferente de Rocha
+##       ou que as pessoas acreditaram ser aceitáveis para um setup inicial
+##       do Tsuru.
+##       (fititnt, 2019-06-24 02:48 BRT)
 
+# Na porta 8080 do seu IP (no meu caso http://173.249.10.99:8080/) é possível
+# ver um guia rápido de como usar o Tsuru (ele está em inglês). Uma versão
+# arquivada do que eu pude ver está em http://archive.is/DPMa0.
+
+# Como você acabou de criar um cluster de Tsuru por padrão estará autenticado
+# com o usuário admin@example.com. Use o comando a seguir para ter certeza
+
+tsuru user-info
+# Resposta
+#   Email: admin@example.com
+#   Roles:
+#   	AllowAll(global)
+#   Permissions:
+#   	*(global)
+
+# Vamos trocar a senha padrão desse 'admin@example.com' (deletar esse usuário
+# depois de criar um novo poeria ser opção melhor). Note que o comando a seguir
+# vai pedir primeiro sua senha atual ('Current password'), que provavelmente
+# será 'admin@example.com' (sem aspas). Depois disso você precisa colocar
+# uma senha nova duas vezes.
+tsuru change-password
+# Resposta
+#   Current password:
+#   New password:
+#   Confirm:
+#   Password successfully updated!
+
+# Vamos criar ao menos um super administrador (troque 'rocha@ieee.org' para o
+# SEU seu e-mail a partir daqui)
+tsuru user-create rocha@ieee.org
+# Resultado:
+#   Password:
+#   Confirm:
+#   User "rocha@ieee.org" successfully created!
+
+# Vamos colocar esse administrador também com permissões liberadas
+tsuru role-assign AllowAll rocha@ieee.org
+# Resultado:
+#   Role successfully assigned!
+
+## TODO: talvez a melhor forma de fazer isso seria adicionar rocha@ieee.org
+##       ao grupo admin? Checar com outras pessoas.
+##       (fititnt, 2019-06-21 02:52 BRT)
+
+## O próximo comando adiciona o user rocha@ieee.org ao time 'admin'. Conforma
+## TODO anterior, talvez isso seja redundante.
+# tsuru team-user-add admin rocha@ieee.org
+## Não, o Comando acima não funciona no tsuru 1.6. Até o momento em que esse
+## guia é escrito, o mantenedor ainda não entendeu a fundo gerenciamento
+## de times, e alguns comandos que funcionavam em versões antigas do Tsuru
+## foram alterados/simplificados
+##
+## De qualquer forma, o comando 'tsuru role-assign AllowAll rocha@ieee.org'
+## pelo menos permite que a gente siga em frente neste guia inicial.
+
+# Perfeito. Agora vamos logar com o novo usuario (que, note, este usuário
+# antes de você logar já tem permissões liberadas) e a partir dele vamos
+# gerenciar outras ações no Tsuru.
+tsuru login rocha@ieee.org
+tsuru user-info
