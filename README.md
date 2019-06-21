@@ -34,6 +34,25 @@ estão disponíveis em nosso [Diário de bordo](diario-de-bordo/).
 - [Diário de bordo](diario-de-bordo/)
 -->
 
+## Filosofia
+
+- PaaS comercial? Divisão de custos entre usuários? Gratuito?
+    - **Gratuito. Sem nem mesmo opção de pagamento de usuário (logo, dentro de seu conhecimento, pedimos que procure usar de forma custo-eficiente).**
+- PaaS focado em estabilidade ou funcionalidades avançadas?
+    - **Estabilidade <sup>(somente quando houver necessidade de priorização)</sup>**.
+- Alta disponibilidade ou Backup?
+    - **Backup <sup>(somente quando houver necessidade de priorização)</sup>**
+- (...adicionar aos poucos filosofia aqui...)
+
+Veja também <https://aguia-pescadora.etica.ai/filosofia/> para mais detalhes.
+
+<!--
+## Metas
+-->
+<!-- “Não vamos colocar meta. Vamos deixar a meta aberta, mas, quando atingirmos a meta, vamos dobrar a meta.” ― Rousseff, Dilma -->
+<!--
+- (Em breve)
+-->
 
 ## Veja também
 - _[AIOps para Comunidade dos Países de Língua Portuguesa, 2019/01](https://github.com/fititnt/cplp-aiops)_

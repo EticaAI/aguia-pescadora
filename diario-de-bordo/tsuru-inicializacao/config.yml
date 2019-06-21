@@ -55,22 +55,27 @@
 #   Reporting a Vulnerability:
 #   Send e-mail to Emerson Rocha: rocha(at)ieee.org.
 ################################################################################
+
+# Delta: 173.249.10.99
+# Echo: 173.249.10.99
+# Foxtrot: 173.249.10.99
+
 name: 'aguia-pescadora'
 hosts:
     core:
-        size: 3
+        size: 2
         driver:
             options:
-                generic-ip-address: ["173.249.10.99", "167.86.127.220", "167.86.127.225"]
+                generic-ip-address: ["173.249.10.99", "167.86.127.220"]
                 generic-ssh-key: ["/home/fititnt/.ssh/id_rsa-aguia-pescadora-tsuru"]
-    #apps:
-    #    size: 3
-    #    dedicated: false
-    #    driver:
-    #        options:
-    #            # generic-ip-address: ["173.249.10.99", "167.86.127.220", "167.86.127.225"]
-    #            generic-ip-address: ["173.249.10.99", "167.86.127.220", "167.86.127.225"]
-    #            generic-ssh-key: ["/home/fititnt/.ssh/id_rsa-aguia-pescadora-tsuru"]
+    apps:
+        size: 1
+        # docs.tsuru.io: "By default, core hosts are reused as apps hosts (this can be configured by the hosts:apps:dedicated config).""
+        dedicated: false
+        driver:
+            options:
+                generic-ip-address: ["167.86.127.225"]
+                generic-ssh-key: ["/home/fititnt/.ssh/id_rsa-aguia-pescadora-tsuru"]
 driver:
     name: generic
     options:
