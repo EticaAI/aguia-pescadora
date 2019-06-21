@@ -57,24 +57,24 @@
 ################################################################################
 
 # Delta: 173.249.10.99
-# Echo: 173.249.10.99
-# Foxtrot: 173.249.10.99
+# Echo: 167.86.127.220
+# Foxtrot: 167.86.127.225
 
 name: 'aguia-pescadora'
 hosts:
     core:
-        size: 2
+        size: 1
         driver:
             options:
-                generic-ip-address: ["173.249.10.99", "167.86.127.220"]
+                generic-ip-address: ["173.249.10.99"]
                 generic-ssh-key: ["/home/fititnt/.ssh/id_rsa-aguia-pescadora-tsuru"]
     apps:
-        size: 1
+        size: 2
         # docs.tsuru.io: "By default, core hosts are reused as apps hosts (this can be configured by the hosts:apps:dedicated config).""
         dedicated: false
         driver:
             options:
-                generic-ip-address: ["167.86.127.225"]
+                generic-ip-address: ["167.86.127.220", "167.86.127.225"]
                 generic-ssh-key: ["/home/fititnt/.ssh/id_rsa-aguia-pescadora-tsuru"]
 driver:
     name: generic
