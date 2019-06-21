@@ -76,6 +76,15 @@ temos em mente o seguinte:
 
 # Licença
 
+Exceto onde especificado contrário, todo conteúdo produzido aqui é liberado
+sob licença Domínio Público.
+
+<!--
+TODO: citar licenças de alguns softwares envolvidos, em especial Tsuru e Docker (fititnt, 2019-06-21 03:48 BRT)
+-->
+
+## Licença de conteúdo produzido pela Etica.AI
+
 [![Domínio Público](docs/img/dominio-publico.png)](UNLICENSE)
 
 Na medida do possível segundo a lei, [EticaAI](https://github.com/EticaAI)

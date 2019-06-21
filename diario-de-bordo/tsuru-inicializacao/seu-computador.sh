@@ -1,7 +1,7 @@
 echo "Este diário de bordo foi feito para ser visualizado, nao executado assim!"
 exit
 ######################## Diario de bordo: seu-computador #######################
-# Seu Computador (testado em um Ubuntu 16.04 LTS), acesso á internet (não muito caso você já deixe instalado docker & docker-engine antes)
+# Seu Computador (testado em um Ubuntu 16.04 LTS), acesso à internet (não muito caso você já deixe instalado docker & docker-engine antes)
 #
 # DESCRIPTION: Explica como usar seu computador e o tsuru-client para
 #              inicializar um cluster remoto. Provavelmente poderia funcionar
@@ -459,8 +459,39 @@ tsuru role-assign AllowAll rocha@ieee.org
 ## De qualquer forma, o comando 'tsuru role-assign AllowAll rocha@ieee.org'
 ## pelo menos permite que a gente siga em frente neste guia inicial.
 
+## NOTA: parece que 'tsuru role-assign AllowAll rocha@ieee.org' implicitamente
+##       adicionou o usuario ao team admin, conforme o que é exibido a seguir
+##       (fititnt, 2019-06-21 03:10 BRT)
+#
+# $ tsuru team-info admin
+# Team: admin
+# Tags: []
+# 
+# Users: 2
+# +-------------------+------------------+
+# | User              | Roles            |
+# +-------------------+------------------+
+# | admin@example.com | AllowAll(global) |
+# +-------------------+------------------+
+# | rocha@ieee.org    | AllowAll(global) |
+# +-------------------+------------------+
+# 
+# Applications: 1
+# +-----------------+-----------+--------------------------------------+
+# | Application     | Units     | Address                              |
+# +-----------------+-----------+--------------------------------------+
+# | tsuru-dashboard | 1 started | tsuru-dashboard.173.249.10.99.nip.io |
+# +-----------------+-----------+--------------------------------------+
+
 # Perfeito. Agora vamos logar com o novo usuario (que, note, este usuário
 # antes de você logar já tem permissões liberadas) e a partir dele vamos
 # gerenciar outras ações no Tsuru.
 tsuru login rocha@ieee.org
 tsuru user-info
+
+
+#### TSURU 1.10: Prepara conta usuário de Tsuru ________________________________
+
+## TODO: documentar o que deve ser feito para que outra pessoa que siga o que
+#        é dito em computador-de-usuario.sh possa fazer o que for necessário
+#        (fititnt, 2019-06-21 03:40 BRT)
