@@ -69,7 +69,7 @@ hosts:
                 generic-ip-address: ["173.249.10.99"]
                 generic-ssh-key: ["/home/fititnt/.ssh/id_rsa-aguia-pescadora-tsuru"]
     apps:
-        size: 2
+        size: 3
         # docs.tsuru.io: "By default, core hosts are reused as apps hosts (this can be configured by the hosts:apps:dedicated config).""
         dedicated: false
         driver:

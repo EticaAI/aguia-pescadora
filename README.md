@@ -36,8 +36,8 @@ estão disponíveis em nosso [Diário de bordo](diario-de-bordo/).
 
 ## Filosofia
 
-Esta filosofia ainda pode passar por alterações nos próximos meses. Porém neste
-momento:
+Nossa filosofia pode passar por melhorias nas próximas semanas, porém desde já
+temos em mente o seguinte:
 
 - PaaS comercial? Divisão de custos entre usuários? Gratuito?
     - **Gratuito. Nem mesmo permitimos opção de pagamento para não constranger usuários.**
