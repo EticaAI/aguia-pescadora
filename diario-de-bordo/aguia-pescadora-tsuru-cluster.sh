@@ -52,3 +52,43 @@ tsuru platform-add ruby
 
 ## Prepara plataforma static
 tsuru platform-add static
+
+
+#------------------------------------------------------------------------------#
+# SEÇÃO MVP DE HTTPS DE *.ETICA.DEV                                            #
+#------------------------------------------------------------------------------#
+# @see https://github.com/EticaAI/aguia-pescadora/issues/10
+# @see https://github.com/EticaAI/aguia-pescadora/issues/14
+# @see https://certbot.eff.org/docs/using.html#manual
+# @see https://github.com/certbot/certbot/issues/5724#issuecomment-373018527
+
+#### Let's Encrypt Wildcard SSL para *.etica.dev _______________________________
+
+# Os comandos dessa sesão são executados em uma maquina que tenha Docker
+# instalado. No caso estou usando meu Notebook e (ao menos neste momento)
+# salvando em uma pasta que não é salva no repositório do git.
+# Troque as pastas do computador local ou volume docker que guardarão os
+# arquivos (primeira parte do -v) para o seu caso e adapte os
+# valores -d "etica.dev" -d "*.etica.dev" para o seu caso
+
+docker run -it --rm --name certbot \
+-v "/alligo/code/eticaai/aguia-pescadora/segredos/certbot/etc/letsencrypt:/etc/letsencrypt" \
+-v "/alligo/code/eticaai/aguia-pescadora/segredos/certbot/var/lib/letsencrypt:/var/lib/letsencrypt" \
+certbot/certbot \
+certonly --manual --preferred-challenges dns-01 --agree-tos --server https://acme-v02.api.letsencrypt.org/directory \
+-d "etica.dev" -d "*.etica.dev"
+
+
+## ATENÇÃO! Como são 2 domínios o desafio na primeira vez irá pedir para
+#           adicionar duas entradas para o registro do tipo TXT do seu DNS.
+#           Sim, é possível fazer isso, porém a interface do seu provedor
+#           pode ter uma forma diferente das outras.
+
+## ATENÇÂO 2: se puder colocar um TTL, procure colocar baixo, visto que se errar
+#             testando pode demorar para limpar os caches de DNS. No meu caso
+#             tive que esperar pelo menos ns 90 segundos
+
+# O comando a seguir poderia ser usado para depurar quais valores o DNS server
+# estaria retornando. Os servidores do Let's Encrypt potencialmente podem usar
+# outros com cache mais baixo
+dig _acme-challenge.etica.dev txt
