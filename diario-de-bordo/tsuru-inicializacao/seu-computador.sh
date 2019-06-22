@@ -263,10 +263,12 @@ cd ~/tmp
 
 # Comentarios feitos, neste momento exato, 2019-06-19 01:00 BRT, em
 # https://github.com/tsuru/tsuru-client/releases é escolhido o seguinte
-wget https://github.com/tsuru/tsuru-client/releases/download/1.6.0/tsuru_1.6.0_linux_amd64.tar.gz
+## wget https://github.com/tsuru/tsuru-client/releases/download/1.6.0/tsuru_1.6.0_linux_amd64.tar.gz
+wget https://github.com/tsuru/tsuru-client/releases/download/1.7.0-rc1/tsuru_1.7.0-rc1_linux_amd64.tar.gz
 
 # O comando a seguir descompacta o arquivo baixado
-tar -vzxf tsuru_1.6.0_linux_amd64.tar.gz
+# tar -vzxf tsuru_1.6.0_linux_amd64.tar.gz
+tar -vzxf tsuru_1.7.0-rc1_linux_amd64.tar.gz
 
 ## fititnt at bravo in ~/tmp [1:04:49]
 # $ tree
@@ -283,9 +285,7 @@ sudo mv tsuru /usr/local/bin
 
 # Feito isso, teste com o seguinte comando qual versão do seu tsuru client
 tsuru --version
-# No seu caso já pode ser uma versão diferente.
-#   tsuru version 1.6.0.
-# No seu pode ser diferente
+# tsuru version 1.7.0-rc1.
 
 # Opcional: se quiser pode adicionar misc/bash-completion para autocompletar
 #           alguns comandos caso seu terminal seja bash e misc/zsh-completion
@@ -364,14 +364,36 @@ tsuru install-create -c config.yml
 #
 #   (uma lista grande de comandos. Aqui apenas o que aparece no final.)
 #
+#   --- Installation Overview ---
+#   Core Hosts:
+#   +---------------+-------+---------+
+#   | IP            | State | Manager |
+#   +---------------+-------+---------+
+#   | 173.249.10.99 | ready | true    |
+#   +---------------+-------+---------+
+#   
+#   Core Components:
+#   +----------------+-------+----------+
+#   | Component      | Ports | Replicas |
+#   +----------------+-------+----------+
+#   | tsuru_mongo    |       | 1        |
+#   +----------------+-------+----------+
+#   | tsuru_tsuru    | 8080  | 1        |
+#   +----------------+-------+----------+
+#   | tsuru_planb    | 80    | 1        |
+#   +----------------+-------+----------+
+#   | tsuru_redis    |       | 1        |
+#   +----------------+-------+----------+
+#   | tsuru_registry | 5000  | 1        |
+#   +----------------+-------+----------+
 #   Configured default user:
 #   Username: admin@example.com
-#   Password: admin123
+#   Password: %I6edx(senhade50caracterescomplexaaqui)oau8XC"t9#r
 #   Apps Hosts:
 #   +-----------------------------+---------+---------+----------------------------------+
 #   | Address                     | IaaS ID | Status  | Metadata                         |
 #   +-----------------------------+---------+---------+----------------------------------+
-#   | https://167.86.127.220:2376 |         | ready   | LastSuccess=2019-06-21T04:54:05Z |
+#   | https://167.86.127.220:2376 |         | ready   | LastSuccess=2019-06-22T06:07:37Z |
 #   |                             |         |         | pool=theonepool                  |
 #   +-----------------------------+---------+---------+----------------------------------+
 #   | https://167.86.127.225:2376 |         | waiting | pool=theonepool                  |
@@ -406,7 +428,7 @@ tsuru install-create -c config.yml
 
 # Na porta 8080 do seu IP (no meu caso http://173.249.10.99:8080/) é possível
 # ver um guia rápido de como usar o Tsuru (ele está em inglês). Uma versão
-# arquivada do que eu pude ver está em http://archive.is/DPMa0.
+# arquivada do que eu pude ver está em http://archive.is/UhpSl.
 
 # Como você acabou de criar um cluster de Tsuru por padrão estará autenticado
 # com o usuário admin@example.com. Use o comando a seguir para ter certeza

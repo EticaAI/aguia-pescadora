@@ -1,4 +1,4 @@
-# fititnt at bravo in /alligo/code/eticaai/aguia-pescadora/diario-de-bordo/tsuru-inicializacao on git:master x [1:32:51]
+# fititnt at bravo in /alligo/code/eticaai/aguia-pescadora/diario-de-bordo/tsuru-inicializacao on git:master x [2:45:36]
 $ tsuru install-create -c config.yml
 Running pre-install checks...
 Creating CA: /home/fititnt/.tsuru/installs/aguia-pescadora/certs/ca.pem
@@ -28,11 +28,11 @@ Uploading registry certificate...
 Deploying tsuru config...
 Deploying compose file in cluster manager....
 Creating network tsuru_tsuru
-Creating service tsuru_tsuru
 Creating service tsuru_redis
 Creating service tsuru_mongo
 Creating service tsuru_planb
 Creating service tsuru_registry
+Creating service tsuru_tsuru
 Restarting docker in aguia-pescadora-1
 Waiting for SSH to be available...
 Detecting the provisioner...
@@ -44,7 +44,7 @@ Using "mongodb" database "tsuru" from the server "mongo:27017".
 
 Password: 
 
-Confirm: 
+Confirm: 
  Root user successfully created.
 Bootstrapping Tsuru API...Running pre-create checks...
 Creating machine...
@@ -169,6 +169,7 @@ Cache table 'tsuru_cache' already exists.
 0 static files copied to '/home/application/current/abyss/static', 204 unmodified.
 ---- Pushing image "173.249.10.99:5000/tsuru/app-tsuru-dashboard:v1" to tsuru ----
 The push refers to repository [173.249.10.99:5000/tsuru/app-tsuru-dashboard]
+3fd10817d523: Pushed 
 d6ceda4c4656: Pushed 
 691b5af91237: Pushed 
 9fcbcb0d2d9c: Pushed 
@@ -187,18 +188,18 @@ b57c79f4a9f3: Mounted from tsuru/python
 d60e01b37e74: Mounted from tsuru/python 
 e45cfbc98a50: Mounted from tsuru/python 
 762d8e1a6054: Mounted from tsuru/python 
-v1: digest: sha256:17704ac5916dbbe737784653e05e4a30b9b208ee3208018736e30ffc0f89a9fc size: 4091
+v1: digest: sha256:936e70488196b00572dd5648f24429d6c8cddd9ee530aede8f49e6e93fa80791 size: 4299
 
 ---- Starting 1 new unit [web: 1] ----
- ---> Started unit 5f98fa9987 [web]
+ ---> Started unit fd96c778c8 [web]
 
 ---- Binding and checking 1 new unit ----
- ---> healthcheck fail(5f98fa9987): Get http://167.86.127.220:32768/healthcheck/: dial tcp 167.86.127.220:32768: connect: connection refused. Trying again in 3s
- ---> healthcheck successful(5f98fa9987)
- ---> Bound and checked unit 5f98fa9987 [web]
+ ---> healthcheck fail(fd96c778c8): Get http://167.86.127.220:32768/healthcheck/: dial tcp 167.86.127.220:32768: connect: connection refused. Trying again in 3s
+ ---> healthcheck successful(fd96c778c8)
+ ---> Bound and checked unit fd96c778c8 [web]
 
 ---- Adding routes to new units ----
- ---> Added route to unit 5f98fa9987 [web]
+ ---> Added route to unit fd96c778c8 [web]
 
 ---- Setting router healthcheck (Path: /) ----
 
@@ -226,24 +227,24 @@ Core Components:
 +----------------+-------+----------+
 | Component      | Ports | Replicas |
 +----------------+-------+----------+
-| tsuru_registry | 5000  | 1        |
-+----------------+-------+----------+
-| tsuru_planb    | 80    | 1        |
+| tsuru_mongo    |       | 1        |
 +----------------+-------+----------+
 | tsuru_tsuru    | 8080  | 1        |
 +----------------+-------+----------+
+| tsuru_planb    | 80    | 1        |
++----------------+-------+----------+
 | tsuru_redis    |       | 1        |
 +----------------+-------+----------+
-| tsuru_mongo    |       | 1        |
+| tsuru_registry | 5000  | 1        |
 +----------------+-------+----------+
 Configured default user:
 Username: admin@example.com
-Password: admin123
+Password: (senha-complexa-aleatoria-aqui)
 Apps Hosts:
 +-----------------------------+---------+---------+----------------------------------+
 | Address                     | IaaS ID | Status  | Metadata                         |
 +-----------------------------+---------+---------+----------------------------------+
-| https://167.86.127.220:2376 |         | ready   | LastSuccess=2019-06-21T04:54:05Z |
+| https://167.86.127.220:2376 |         | ready   | LastSuccess=2019-06-22T06:07:37Z |
 |                             |         |         | pool=theonepool                  |
 +-----------------------------+---------+---------+----------------------------------+
 | https://167.86.127.225:2376 |         | waiting | pool=theonepool                  |
@@ -257,4 +258,4 @@ Apps:
 | tsuru-dashboard | 1 starting | tsuru-dashboard.173.249.10.99.nip.io |
 +-----------------+------------+--------------------------------------+
 
-# fititnt at bravo in /alligo/code/eticaai/aguia-pescadora/diario-de-bordo/tsuru-inicializacao on git:master x [1:54:21]
+# fititnt at bravo in /alligo/code/eticaai/aguia-pescadora/diario-de-bordo/tsuru-inicializacao on git:master x [3:07:55]
