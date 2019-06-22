@@ -1,6 +1,6 @@
 echo "Este diário de bordo foi feito para ser visualizado, nao executado assim!"
 exit
-######################## Diario de bordo: seu-computador #######################
+############## Diario de bordo: tsuru-inicializacao/seu-computador #############
 # Seu Computador (testado em um Ubuntu 16.04 LTS), acesso à internet (não muito caso você já deixe instalado docker & docker-engine antes)
 #
 # DESCRIPTION: Explica como usar seu computador e o tsuru-client para
