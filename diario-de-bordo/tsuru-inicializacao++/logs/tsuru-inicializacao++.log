@@ -1,0 +1,261 @@
+# fititnt at bravo in /alligo/code/eticaai/aguia-pescadora/diario-de-bordo/tsuru-inicializacao++ on git:master x [19:50:40]
+$ tsuru install-create -c install-config.yml -e install-compose.yml
+Running pre-install checks...
+Creating CA: /home/fititnt/.tsuru/installs/aguia-pescadora/certs/ca.pem
+Creating client certificate: /home/fititnt/.tsuru/installs/aguia-pescadora/certs/cert.pem
+Running pre-create checks...
+Creating machine...
+(aguia-pescadora-1) Importing SSH key...
+Waiting for machine to be running, this may take a few minutes...
+Detecting operating system of created instance...
+Waiting for SSH to be available...
+Detecting the provisioner...
+Provisioning with ubuntu(systemd)...
+Installing Docker...
+Copying certs to the local machine directory...
+Copying certs to the remote machine...
+Setting Docker configuration on the remote daemon...
+Checking connection to Docker...
+Docker is up and running!
+Waiting for SSH to be available...
+Detecting the provisioner...
+Installing Docker...
+Copying certs to the local machine directory...
+Copying certs to the remote machine...
+Setting Docker configuration on the remote daemon...
+Creating registry certificate...
+Uploading registry certificate...
+Deploying tsuru config...
+Deploying compose file in cluster manager....
+Creating network tsuru_tsuru
+Creating service tsuru_registry
+Creating service tsuru_tsuru
+Creating service tsuru_redis
+Creating service tsuru_mongo
+Creating service tsuru_planb
+Restarting docker in aguia-pescadora-1
+Waiting for SSH to be available...
+Detecting the provisioner...
+Waiting for Tsuru API to become responsive...
++Opening config file: /etc/tsuru/tsuru.conf
+�Done reading config file: /etc/tsuru/tsuru.conf
+Warning: configuration didn't declare a database driver, using default driver.
+Using "mongodb" database "tsuru" from the server "mongo:27017".
+
+Password: 
+
+Confirm: 
+ Root user successfully created.
+Bootstrapping Tsuru API...Running pre-create checks...
+Creating machine...
+(aguia-pescadora-2) Importing SSH key...
+Waiting for machine to be running, this may take a few minutes...
+Detecting operating system of created instance...
+Waiting for SSH to be available...
+Detecting the provisioner...
+Provisioning with ubuntu(systemd)...
+Installing Docker...
+Copying certs to the local machine directory...
+Copying certs to the remote machine...
+Setting Docker configuration on the remote daemon...
+Checking connection to Docker...
+Docker is up and running!
+Waiting for SSH to be available...
+Detecting the provisioner...
+Installing Docker...
+Copying certs to the local machine directory...
+Copying certs to the remote machine...
+Setting Docker configuration on the remote daemon...
+Uploading registry certificate...
+Running pre-create checks...
+Creating machine...
+(aguia-pescadora-3) Importing SSH key...
+Waiting for machine to be running, this may take a few minutes...
+Detecting operating system of created instance...
+Waiting for SSH to be available...
+Detecting the provisioner...
+Provisioning with ubuntu(systemd)...
+Installing Docker...
+Copying certs to the local machine directory...
+Copying certs to the remote machine...
+Setting Docker configuration on the remote daemon...
+Checking connection to Docker...
+Docker is up and running!
+Waiting for SSH to be available...
+Detecting the provisioner...
+Installing Docker...
+Copying certs to the local machine directory...
+Copying certs to the remote machine...
+Setting Docker configuration on the remote daemon...
+Uploading registry certificate...
+adding target
+New target aguia-pescadora -> http://173.249.10.99:8080 added to target list and defined as the current target
+log in with default user: admin@example.com Password: 
+Successfully logged in!
+adding pool
+Pool successfully registered.
+adding node https://167.86.127.220:2376
+Node successfully registered.
+adding node https://167.86.127.225:2376
+Node successfully registered.
+adding node https://173.249.10.99:2376
+Node successfully registered.
+adding platform
+Step 1/1 : FROM tsuru/python
+latest: Pulling from tsuru/python
+898c46f3b1a1: Pull complete 
+63366dfa0a50: Pull complete 
+041d4cd74a92: Pull complete 
+6e1bee0f8701: Pull complete 
+f1262cb8e4eb: Pull complete 
+3b42147f93c6: Pull complete 
+ce676a4695b2: Pull complete 
+3d2ec243107f: Pull complete 
+8dd3be1f9c8f: Pull complete 
+d8fdacb9c35e: Pull complete 
+208c5cbd4b1d: Pull complete 
+Digest: sha256:8fd5cc5b7e238e6e02b8661502b97fe262633d734f42b84219b56756a10dd0f2
+Status: Downloaded newer image for tsuru/python:latest
+ ---> 80e4f8c9f479
+Successfully built 80e4f8c9f479
+Successfully tagged 173.249.10.99:5000/tsuru/python:v1
+Platform successfully added!
+adding team
+Team "admin" successfully created!
+adding dashboard
+App "tsuru-dashboard" has been created!
+Use app-info to check the status of the app and its units.
+deploying dashboard
+Deploying image... ok
+---- Getting process from image ----
+latest: Pulling from tsuru/dashboard
+898c46f3b1a1: Pull complete 
+63366dfa0a50: Pull complete 
+041d4cd74a92: Pull complete 
+6e1bee0f8701: Pull complete 
+f1262cb8e4eb: Pull complete 
+3b42147f93c6: Pull complete 
+ce676a4695b2: Pull complete 
+8451f182be01: Pull complete 
+08228282e2e2: Pull complete 
+ece7284ab391: Pull complete 
+74846b861d93: Pull complete 
+58e30f14a771: Pull complete 
+77f713733a5c: Pull complete 
+4867c7fa9135: Pull complete 
+17e3ccb375ed: Pull complete 
+fc2fc7de3e1d: Pull complete 
+ad6fe7455e89: Pull complete 
+d962926909e2: Pull complete 
+Digest: sha256:e49a7379e01643ed851680d69d87272490274424628e006b4117db3e22eef8e7
+Status: Downloaded newer image for tsuru/dashboard:latest
+---- Inspecting image "tsuru/dashboard:latest" ----
+  ---> Process "web" found with commands: ["gunicorn --access-logfile - -b 0.0.0.0:$PORT -w 2 abyss.wsgi -k gevent"]
+---- Getting tsuru.yaml from image ----
+latest: Pulling from tsuru/dashboard
+Digest: sha256:e49a7379e01643ed851680d69d87272490274424628e006b4117db3e22eef8e7
+Status: Image is up to date for tsuru/dashboard:latest
+---- Running build hooks ----
+ ---> Running "python manage.py migrate --noinput && python manage.py createcachetable && python manage.py collectstatic --noinput"
+latest: Pulling from tsuru/dashboard
+Digest: sha256:e49a7379e01643ed851680d69d87272490274424628e006b4117db3e22eef8e7
+Status: Image is up to date for tsuru/dashboard:latest
+Operations to perform:
+  Apply all migrations: contenttypes, sessions
+Running migrations:
+  No migrations to apply.
+Cache table 'tsuru_cache' already exists.
+
+0 static files copied to '/home/application/current/abyss/static', 204 unmodified.
+---- Pushing image "173.249.10.99:5000/tsuru/app-tsuru-dashboard:v1" to tsuru ----
+The push refers to repository [173.249.10.99:5000/tsuru/app-tsuru-dashboard]
+3fd10817d523: Pushed 
+d6ceda4c4656: Pushed 
+691b5af91237: Pushed 
+9fcbcb0d2d9c: Pushed 
+8b7c9398215e: Pushed 
+6c8b164a219a: Pushed 
+4a7d5e6f8f02: Pushed 
+0f8a11f8ed4b: Pushed 
+a5e25c97cf5b: Pushed 
+296e644b7d2c: Pushed 
+f928ed1c7b60: Pushed 
+095c21c108c6: Pushed 
+c161a80a5f93: Pushed 
+b46b7be76795: Pushed 
+1e7aa790428a: Pushed 
+b57c79f4a9f3: Pushed 
+d60e01b37e74: Pushed 
+e45cfbc98a50: Pushed 
+762d8e1a6054: Pushed 
+v1: digest: sha256:47054877bf27edb4d9354e5381c3957605da0fb3e0fd29511cdeca83fedb95cc size: 4299
+
+---- Starting 1 new unit [web: 1] ----
+ ---> Started unit eded932e14 [web]
+
+---- Binding and checking 1 new unit ----
+ ---> healthcheck fail(eded932e14): Get http://167.86.127.220:32768/healthcheck/: dial tcp 167.86.127.220:32768: connect: connection refused. Trying again in 3s
+ ---> healthcheck successful(eded932e14)
+ ---> Bound and checked unit eded932e14 [web]
+
+---- Adding routes to new units ----
+ ---> Added route to unit eded932e14 [web]
+
+---- Setting router healthcheck (Path: /) ----
+
+OK
+Applying iptables workaround for docker 1.12...
+Failed to apply iptables rule: ssh command error:
+command : PATH=$PATH:/usr/sbin/:/usr/local/sbin; sudo iptables -D DOCKER-ISOLATION -i docker_gwbridge -o docker0 -j DROP
+err     : exit status 1
+output  : iptables: Bad rule (does a matching rule exist in that chain?).
+. Maybe it is not needed anymore?
+Failed to apply iptables rule: ssh command error:
+command : PATH=$PATH:/usr/sbin/:/usr/local/sbin; sudo iptables -D DOCKER-ISOLATION -i docker0 -o docker_gwbridge -j DROP
+err     : exit status 1
+output  : iptables: Bad rule (does a matching rule exist in that chain?).
+. Maybe it is not needed anymore?
+--- Installation Overview ---
+Core Hosts:
++---------------+-------+---------+
+| IP            | State | Manager |
++---------------+-------+---------+
+| 173.249.10.99 | ready | true    |
++---------------+-------+---------+
+
+Core Components:
++----------------+-------+----------+
+| Component      | Ports | Replicas |
++----------------+-------+----------+
+| tsuru_tsuru    | 8080  | 1        |
++----------------+-------+----------+
+| tsuru_redis    |       | 1        |
++----------------+-------+----------+
+| tsuru_mongo    |       | 1        |
++----------------+-------+----------+
+| tsuru_registry | 5000  | 1        |
++----------------+-------+----------+
+| tsuru_planb    | 82    | 1        |
++----------------+-------+----------+
+Configured default user:
+Username: admin@example.com
+Password: <XGByem(Uma-Senha-Complexa-Aqui)lH8w)15zpi
+Apps Hosts:
++-----------------------------+---------+---------+----------------------------------+
+| Address                     | IaaS ID | Status  | Metadata                         |
++-----------------------------+---------+---------+----------------------------------+
+| https://167.86.127.220:2376 |         | ready   | LastSuccess=2019-06-22T23:37:29Z |
+|                             |         |         | pool=theonepool                  |
++-----------------------------+---------+---------+----------------------------------+
+| https://167.86.127.225:2376 |         | waiting | pool=theonepool                  |
++-----------------------------+---------+---------+----------------------------------+
+| https://173.249.10.99:2376  |         | waiting | pool=theonepool                  |
++-----------------------------+---------+---------+----------------------------------+
+Apps:
++-----------------+------------+--------------------------------------+
+| Application     | Units      | Address                              |
++-----------------+------------+--------------------------------------+
+| tsuru-dashboard | 1 starting | tsuru-dashboard.173.249.10.99.nip.io |
++-----------------+------------+--------------------------------------+
+
+# fititnt at bravo in /alligo/code/eticaai/aguia-pescadora/diario-de-bordo/tsuru-inicializacao++ on git:master x [20:37:45]

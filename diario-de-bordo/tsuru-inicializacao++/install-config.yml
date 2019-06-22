@@ -1,0 +1,87 @@
+########### diario-de-bordo/tsuru-inicializacao++/install-config.yml ###########
+# Arquivo install-config.yml que criou inicialmente o Tsuru Cluster Águia Pescadora
+#
+# (NOTA: este arquivo até o momento, 2019-06-22 20:02 BRT) ainda é uma copia do
+#        arquivo diario-de-bordo/tsuru-inicializacao++/config.yml. Leia o
+#        histórico do repositório git para saber mais sobre)
+#
+# Para entender mais sobre este arquivo, por favor leia também o arquivo
+# seu-computador.sh que está neste mesmo diretório.
+# Note que este arquivo foi criado em torno de 20 dias depois do primeiro MVP
+# que o mantenedor inicial fez (no caso, com a Águia Pescadora Charlie) e
+# possívelmente teria outras melhorias. Porém ao menos serve como pontapé
+# inicial. Recomedamos também que acompanhe o histórico de commits no
+# repositório principal em https://github.com/EticaAI/aguia-pescadora para
+# ver a evolução. Este arquivo em especial será comentado em "Como re-criar um
+# produto mínimo viável do Cluster Tsuru Águia Pescadora" no link
+# https://github.com/EticaAI/aguia-pescadora/issues/5.
+#
+# Em especial, o mantenedor inicial não tem experiência suficiente para dizer
+# se, mesmo com grande poder de processamento que tem e de baixo custo (isto é
+# neste momento [Nós: 3][CPU: 14][RAM: 32GB][Disco: 800GB SSD]
+# [Custo: < 100 BRL/mês]), talvez este arranjo inicial não seja o mais
+# eficiente.
+#
+# ---------------------------------------------------------------------------- #
+# Tsuru Cluster
+# - 3 VPSs [CPU: 14][RAM: 32GB][Disco: 800GB SSD][Custo Mesal: < 100 BRL]
+# - Nó com Tsuru: Delta (não exclusivo)
+#     - Um dos motivos de escolher Delta (que tem dobro de potencia das demais)
+#       é também que se eventualmente o cluster tiver que ser reduzido (ex.
+#       ainda não ser tão usado para justificar tanta potencia) a gente poderia
+#       permanecer apenas com a Delta e só recriar outras no futuro)
+#
+# VPSs
+# - Águia Pescadora Delta: aguia-pescadora-delta.etica.ai
+#     - VPS (KVM), 6 vCPUs, 16GB RAM, 400GB SSD, Ubuntu Server 18.04 64bit, Contabo (Germany)
+#     - Diário de Bordo: https://github.com/EticaAI/aguia-pescadora/blob/master/diario-de-bordo/delta.sh
+# - Águia Pescadora Echo: aguia-pescadora-echo.etica.ai
+#     - VPS (KVM), 4 vCPUs, 8GB RAM, 200GB SSD, Ubuntu Server 18.04 64bit, Contabo (Germany)
+#     - Diário de Bordo: https://github.com/EticaAI/aguia-pescadora/blob/master/diario-de-bordo/echo.sh
+# - Águia Pescadora Foxtrot: aguia-pescadora-foxtrot.etica.ai
+#     - VPS (KVM), 4 vCPUs, 8GB RAM, 200GB SSD, Ubuntu Server 18.04 64bit, Contabo (Germany)
+#     - Diário de Bordo: https://github.com/EticaAI/aguia-pescadora/blob/master/diario-de-bordo/foxtrot.sh
+#
+# -----------------------------------------------------------------------------#
+# LICENSE: Public Domain
+#   Except where otherwise noted, content on this server configuration and to
+#   the extent possible under law, Emerson Rocha has waived all copyright and
+#   related or neighboring rights to this work to Public Domain
+#
+# MAINTAINER: Emerson Rocha <rocha(at)ieee.org>
+#   Keep in mind that several people help with suggestions, testing, bugfixes
+#   and inspiration without get names noted in places that most software
+#   developers look. I'm saying this in special for people who help over
+#   Facebook discussions. Even the ones without a personal computer yet and/or
+#   with limited access to internet.
+#
+# SECURITY:
+#   Reporting a Vulnerability:
+#   Send e-mail to Emerson Rocha: rocha(at)ieee.org.
+################################################################################
+
+# Delta: 173.249.10.99
+# Echo: 167.86.127.220
+# Foxtrot: 167.86.127.225
+
+name: 'aguia-pescadora'
+hosts:
+    core:
+        size: 1
+        driver:
+            options:
+                generic-ip-address: ["173.249.10.99"]
+                generic-ssh-key: ["/home/fititnt/.ssh/id_rsa-aguia-pescadora-tsuru"]
+    apps:
+        size: 3
+        # docs.tsuru.io: "By default, core hosts are reused as apps hosts (this can be configured by the hosts:apps:dedicated config).""
+        dedicated: false
+        driver:
+            options:
+                generic-ip-address: ["167.86.127.220", "167.86.127.225"]
+                generic-ssh-key: ["/home/fititnt/.ssh/id_rsa-aguia-pescadora-tsuru"]
+driver:
+    name: generic
+    options:
+        generic-ssh-port: 22
+        generic-ssh-user: root

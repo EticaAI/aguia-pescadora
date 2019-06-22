@@ -354,6 +354,14 @@ vim config.yml
 
 #### TSURU 1.8a: Ordena instação do Tsuru remotamente __________________________
 tsuru install-create -c config.yml
+# NOTA: o tsuru não permite tentar recrear algo com mesmo nome das anteriores.
+#       caso você REALMENTE não vai precisar de mais nada da anterior e já
+#       deletou os servidores remotos e está recomeçando do zero, terá que
+#       rodar o comando exato anterior, so que em vez de '-create' trocar por
+#       '-remove'. Isto é, terá que usar 'tsuru install-remove -c config.yml'
+#       Este comando apagará arquivos que estão em ~/.tsuru/installs com dados
+#       de como acessar as máquinas antigas.
+
 
 # Veja arquivo tsuru-inicializacao.log nesta mesma pasta para ver log completo
 # Demorou em torno de 22 min (o tempo pode ser bem diferente, em especial
