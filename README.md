@@ -10,6 +10,15 @@ quais participamos.**
 
 
 <!--
+Considerar...
+
+- https://github.com/galeb/galeb
+- https://cachethq.io
+
+-->
+
+
+<!--
 
 . Pode incluir desde
 pequenos projetos
@@ -40,7 +49,7 @@ Nossa filosofia pode passar por melhorias nas próximas semanas, porém desde j�
 temos em mente o seguinte:
 
 - PaaS comercial? Divisão de custos entre usuários? Gratuito?
-    - **Gratuito. Nem mesmo permitimos opção de pagamento para não constranger usuários.**
+    - **Gratuito. Nem mesmo permitimos opção de pagamento para não constranger finais usuários.**
         - _Você, usuário, pode facilitar se adaptar ao uso de tecnologias que permitem baixo (exemplos: [git](https://git-scm.com/book/pt-br/v1/Primeiros-passos-No%C3%A7%C3%B5es-B%C3%A1sicas-de-Git), o [PaaS open source Tsuru](https://tsuru.io), e o conceito de [aplicação de doze fatores](https://12factor.net/pt_br/)). Aprender e ter experiência nelas é útil em outros projetos._
 - Águia Pescadora aceita doações?
     - **Não existe opção de doação em dinheiro para Águia Pescadora**
@@ -76,14 +85,14 @@ temos em mente o seguinte:
 
 # Licença
 
-Exceto onde especificado contrário, todo conteúdo produzido aqui é liberado
-sob licença Domínio Público.
+Exceto onde especificado contrário, todo conteúdo produzido neste projeto
+é liberado sob licença Domínio Público.
 
 <!--
 TODO: citar licenças de alguns softwares envolvidos, em especial Tsuru e Docker (fititnt, 2019-06-21 03:48 BRT)
 -->
 
-## Licença de conteúdo produzido pela Etica.AI
+## Licença do conteúdo produzido pela Etica.AI
 
 [![Domínio Público](docs/img/dominio-publico.png)](UNLICENSE)
 
