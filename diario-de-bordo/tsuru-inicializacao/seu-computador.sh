@@ -409,7 +409,7 @@ tsuru install-create -c config.yml
 
 # Neste momento você pode entrar em uma URL que será parecida com a
 # tsuru-dashboard.173.249.10.99.nip.io, com usuário admin@example.com
-# e senha admin123. É recomendado trocar isso!!
+# e senha informada no final da instalação do usupario admin de exemplo
 
 # No próximo passo você irá criar pelo menos um usuário administrador e fazer
 # testes básicos na plataforma. Eventualmente poderá fazer outras customizações
@@ -442,7 +442,7 @@ tsuru user-info
 #   	*(global)
 
 # Vamos trocar a senha padrão desse 'admin@example.com' (deletar esse usuário
-# depois de criar um novo poeria ser opção melhor). Note que o comando a seguir
+# depois de criar um novo poderia ser opção melhor). Note que o comando a seguir
 # vai pedir primeiro sua senha atual ('Current password'), que provavelmente
 # será 'admin@example.com' (sem aspas). Depois disso você precisa colocar
 # uma senha nova duas vezes.
