@@ -115,3 +115,109 @@ sudo cat /root/.ssh/authorized_keys
 ## Resolve o erro do Docker Machine
 # Setting Docker configuration on the remote daemon... \n Error running SSH command: ssh command error: \n command : netstat -tln \n err     : exit status 127 \n output  : bash: netstat: command not found
 sudo apt install net-tools
+
+#------------------------------------------------------------------------------#
+# SEÇÃO OpenResty & HTTPS:                                                     #
+#------------------------------------------------------------------------------#
+# @see https://github.com/EticaAI/aguia-pescadora/issues/15
+# @see http://openresty.org/en/linux-packages.html
+
+# Nota: em sistemas que já tem NGinx instalado, será necessário o seguinte:
+# sudo systemctl disable nginx
+# sudo systemctl stop nginx
+
+#### OpenResty, repositório padrão e instalação básica _________________________
+### @see http://openresty.org/en/linux-packages.html
+# import our GPG key:
+wget -qO - https://openresty.org/package/pubkey.gpg | sudo apt-key add -
+
+# for installing the add-apt-repository command
+# (you can remove this package and its dependencies later):
+sudo apt-get -y install software-properties-common
+
+# add the our official APT repository:
+sudo add-apt-repository -y "deb http://openresty.org/package/ubuntu $(lsb_release -sc) main"
+
+# to update the APT index:
+sudo apt-get update
+
+# Then you can install a package, say, openresty, like this:
+sudo apt-get install -y openresty
+
+## Acesse o servidor. No caso de bravo, seria estas URLs
+# - http://tsuru-dashboard.173.249.10.99.nip.io/
+# - http://173.249.10.99/
+## E você vera 'Welcome to OpenResty!', pagina padrão.
+
+#### OpenResty + GUI/lua-resty-auto-ssl, instalação básica _____________________
+# @see https://github.com/GUI/lua-resty-auto-ssl#installation
+
+# NOTA: sobre instalação do luarocks para o lua-resty-auto-ssl
+# Não tenho certeza se a versão que tem no Ubuntu 18.04 do LuaRocks é suficiente
+# O link da documentaçãodo Lua Resty Auto SSL manda para documentação padrão
+# do OpenResty.org, que diz que instalar o Lua padrão é desaconselhado pois
+# o OpenResty ja tem um package manager. Na documentação, falam que existia
+# uma versão do lua 2.3.0, mas que usariam a 2.0.13 por questão de
+# compatibilidade. Na documetnação do Luarocks eles dizem que a versão estável
+# é 3.1.3 (vide https://github.com/luarocks/luarocks/wiki/Download).
+#
+# No nosso caso aqui, O padrão do Ubuntu 18.04 cita 2.4.2+dfsg-1.
+# Vou usar essa padrão do ubuntu e apenas se der problema vou atrás.
+# (fititnt, 2019-06-22 21:33 BRT)
+sudo apt install -y luarocks
+
+# Instala o lua-resty-auto-ssl
+sudo luarocks install lua-resty-auto-ssl
+
+## Específico para Ubuntu 18.04. Talvez se aplique a outros sistemas.
+# @see https://github.com/openssl/openssl/issues/7754#issuecomment-444063355
+# Caso ocorra erros ao usar o comando openssl seja para criar chave de fallback
+# ou o resty-auto-ssl:
+# "err: Can't load ./.rnd into RNG" pode ser necessário comentar a linha
+# que tenha 'RANDFILE' em /etc/ssl/openssl.cnf.
+# Você pode usar 'vim /etc/ssl/openssl.cnf' ou executar o comando seguinte uma vez
+sed -i '/RANDFILE/s/^/#/g' /etc/ssl/openssl.cnf
+
+# Create /etc/resty-auto-ssl and make sure it's writable by whichever user your
+# nginx workers run as (in this example, "www-data").
+sudo mkdir /etc/resty-auto-ssl
+sudo chown www-data /etc/resty-auto-ssl
+# Caso tenha problemas com permissão: 
+# sudo chown www-data -R /etc/resty-auto-ssl
+
+#### OpenResty + GUI/lua-resty-auto-ssl, configuração mínima ___________________
+# Edite o arquivo do NGinx para ficar conforme https://github.com/GUI/lua-resty-auto-ssl#installation
+# Uma copia deste arquivo está em diario
+# de-bordo/delta/usr/local/openresty/nginx/conf/nginx.conf
+sudo vim /usr/local/openresty/nginx/conf/nginx.conf
+
+# É preciso criar um certificado padrão para o NGinx pelo menos poder iniciar sem erro
+sudo openssl req -new -newkey rsa:2048 -days 3650 -nodes -x509 \
+  -subj '/CN=sni-support-required-for-valid-ssl' \
+  -keyout /etc/ssl/resty-auto-ssl-fallback.key \
+  -out /etc/ssl/resty-auto-ssl-fallback.crt
+
+# Reinicie o Openresty
+sudo systemctl status openresty
+sudo systemctl reload openresty
+
+# Para ver erros
+tail -f /usr/local/openresty/nginx/logs/error.log
+
+#------------------------------------------------------------------------------#
+# SEÇÃO ARQUIVOS PADRÕES POR SERVIDOR                                          #
+#------------------------------------------------------------------------------#
+# Reduz mensagens de erro/acesso 404 nos logs
+## Você pode criar com touch
+# sudo touch /usr/local/openresty/nginx/html/favicon.ico
+# sudo touch /usr/local/openresty/nginx/html/robots.txt
+
+# Ou usar o comando scp
+scp -r /alligo/code/eticaai/aguia-pescadora/diario-de-bordo/foxtrot/usr/local/openresty/nginx/html root@aguia-pescadora-foxtrot.etica.ai:/usr/local/openresty/nginx/
+scp -r /alligo/code/eticaai/aguia-pescadora/diario-de-bordo/foxtrot/usr/local/openresty/nginx/conf root@aguia-pescadora-foxtrot.etica.ai:/usr/local/openresty/nginx/
+
+sudo systemctl status openresty
+sudo systemctl reload openresty
+
+# Para ver erros
+tail -f /usr/local/openresty/nginx/logs/error.log

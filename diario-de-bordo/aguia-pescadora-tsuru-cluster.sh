@@ -111,3 +111,5 @@ tsuru app list
 ##+-----------------+-----------+--------------------------------------+
 
 ## Visite https://tsuru-dashboard.app.etica.dev/
+
+tsuru platform-add static
