@@ -217,3 +217,14 @@ sudo systemctl reload openresty
 
 # Para ver erros
 tail -f /usr/local/openresty/nginx/logs/error.log
+
+#------------------------------------------------------------------------------#
+# SEÇÃO ARQUIVOS PADRÕES POR SERVIDOR                                          #
+#------------------------------------------------------------------------------#
+# Reduz mensagens de erro/acesso 404 nos logs
+## Você pode criar com touch
+sudo touch /usr/local/openresty/nginx/html/favicon.ico
+sudo touch /usr/local/openresty/nginx/html/robots.txt
+
+# Ou usar o comando scp
+scp -r /alligo/code/eticaai/aguia-pescadora/diario-de-bordo/delta/usr/local/openresty/nginx/html root@aguia-pescadora-delta.etica.ai:/usr/local/openresty/nginx/

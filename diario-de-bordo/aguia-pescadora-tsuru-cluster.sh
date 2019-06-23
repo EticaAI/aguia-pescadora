@@ -1,5 +1,8 @@
-
 # TODO: organizar melhor esse diario de bordo... (fititnt, 2019-06-20 03:30 BRT)
+
+# Delta: 173.249.10.99
+# Echo: 167.86.127.220
+# Foxtrot: 167.86.127.225
 
 ## Ao menos de um administrador
 ssh-copy-id -i ~/.ssh/id_rsa-rocha-eticaai-2019.pub root@aguia-pescadora-delta.etica.ai
@@ -92,3 +95,19 @@ certonly --manual --preferred-challenges dns-01 --agree-tos --server https://acm
 # estaria retornando. Os servidores do Let's Encrypt potencialmente podem usar
 # outros com cache mais baixo
 dig _acme-challenge.etica.dev txt
+
+### temporario, documentar depois ______________________________________________
+# Testes rapidos aqui
+
+tsuru cname-add tsuru-dashboard.app.etica.dev -a tsuru-dashboard
+# cname successfully defined.
+# fititnt at bravo in /alligo/code/eticaai/aguia-pescadora/diario-de-bordo/tsuru-inicializacao on git:master x [1:32:31]
+tsuru app list                                                  
+##+-----------------+-----------+--------------------------------------+
+##| Application     | Units     | Address                              |
+##+-----------------+-----------+--------------------------------------+
+##| tsuru-dashboard | 1 started | tsuru-dashboard.app.etica.dev        |
+##|                 |           | tsuru-dashboard.173.249.10.99.nip.io |
+##+-----------------+-----------+--------------------------------------+
+
+## Visite https://tsuru-dashboard.app.etica.dev/
