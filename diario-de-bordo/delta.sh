@@ -156,5 +156,38 @@ sudo add-apt-repository -y "deb http://openresty.org/package/ubuntu $(lsb_releas
 sudo apt-get update
 
 # Then you can install a package, say, openresty, like this:
-
 sudo apt-get install openresty
+
+## Acesse o servidor. No caso de bravo, seria estas URLs
+# - http://tsuru-dashboard.173.249.10.99.nip.io/
+# - http://173.249.10.99/
+## E você vera 'Welcome to OpenResty!', pagina padrão.
+
+#### OpenResty + GUI/lua-resty-auto-ssl, instalação básica _____________________
+# @see https://github.com/GUI/lua-resty-auto-ssl#installation
+
+# NOTA: sobre instalação do luarocks para o lua-resty-auto-ssl
+# Não tenho certeza se a versão que tem no Ubuntu 18.04 do LuaRocks é suficiente
+# O link da documentaçãodo Lua Resty Auto SSL manda para documentação padrão
+# do OpenResty.org, que diz que instalar o Lua padrão é desaconselhado pois
+# o OpenResty ja tem um package manager. Na documentação, falam que existia
+# uma versão do lua 2.3.0, mas que usariam a 2.0.13 por questão de
+# compatibilidade. Na documetnação do Luarocks eles dizem que a versão estável
+# é 3.1.3 (vide https://github.com/luarocks/luarocks/wiki/Download).
+#
+# No nosso caso aqui, O padrão do Ubuntu 18.04 cita 2.4.2+dfsg-1.
+# Vou usar essa padrão do ubuntu e apenas se der problema vou atrás.
+# (fititnt, 2019-06-22 21:33 BRT)
+sudo apt install luarocks
+
+# Instala o lua-resty-auto-ssl
+sudo luarocks install lua-resty-auto-ssl
+
+$ sudo luarocks install lua-resty-auto-ssl
+
+# Create /etc/resty-auto-ssl and make sure it's writable by whichever user your
+# nginx workers run as (in this example, "www-data").
+sudo mkdir /etc/resty-auto-ssl
+sudo chown www-data /etc/resty-auto-ssl
+
+## TODO: rever permissões e usuário do NGinx/OpenResty em breve (fititnt, 2019-06-22 21:40 BRT)
