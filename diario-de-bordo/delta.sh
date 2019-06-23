@@ -191,3 +191,51 @@ sudo mkdir /etc/resty-auto-ssl
 sudo chown www-data /etc/resty-auto-ssl
 
 ## TODO: rever permissões e usuário do NGinx/OpenResty em breve (fititnt, 2019-06-22 21:40 BRT)
+
+#### OpenResty + GUI/lua-resty-auto-ssl, configuração mínima ___________________
+# Edite o arquivo do NGinx para ficar conforme https://github.com/GUI/lua-resty-auto-ssl#installation
+# Uma copia deste arquivo está em diario
+# de-bordo/delta/usr/local/openresty/nginx/conf/nginx.conf
+sudo vim /usr/local/openresty/nginx/conf/nginx.conf
+
+# É preciso criar um certificado padrão para o NGinx pelo menos poder iniciar sem erro
+sudo openssl req -new -newkey rsa:2048 -days 3650 -nodes -x509 \
+  -subj '/CN=sni-support-required-for-valid-ssl' \
+  -keyout /etc/ssl/resty-auto-ssl-fallback.key \
+  -out /etc/ssl/resty-auto-ssl-fallback.crt
+
+## root@aguia-pescadora-1:~# sudo openssl req -new -newkey rsa:2048 -days 3650 -nodes -x509 \
+## >   -subj '/CN=sni-support-required-for-valid-ssl' \
+## >   -keyout /etc/ssl/resty-auto-ssl-fallback.key \
+## >   -out /etc/ssl/resty-auto-ssl-fallback.crt
+## Can't load /root/.rnd into RNG
+## 140384327201216:error:2406F079:random number generator:RAND_load_file:Cannot open file:../crypto/rand/randfile.c:88:Filename=/root/.rnd
+
+
+# Reinicie o Openresty
+sudo systemctl status openresty
+sudo systemctl reload openresty
+
+# Para ver erros
+tail -f /usr/local/openresty/nginx/logs/error.log
+
+# Erros para tentativa de obter HTTPS para 173.249.10.99.nip.io
+
+## /usr/local/bin/resty-auto-ssl/start_sockproc: line 55: kill: (21760) - No such process
+## 2019/06/23 01:50:14 [error] 22053#22053: *16 [lua] lets_encrypt.lua:41: issue_cert(): auto-ssl: dehydrated failed: env HOOK_SECRET=a6e7818677010e3a6addeae5a1b8aaebf65169bd31dd063e88bf3b69cb22b7d5 HOOK_SERVER_PORT=8999 /usr/local/bin/resty-auto-ssl/dehydrated --cron --accept-terms --no-lock --domain 173.249.10.99.nip.io --challenge http-01 --config /etc/resty-auto-ssl/letsencrypt/config --hook /usr/local/bin/resty-auto-ssl/letsencrypt_hooks status: 256 out: # INFO: Using main config file /etc/resty-auto-ssl/letsencrypt/config
+## + Generating account key...
+## + Registering account key with ACME server...
+## Processing 173.249.10.99.nip.io
+##  + Signing domains...
+##  + Creating new directory /etc/resty-auto-ssl/letsencrypt/certs/173.249.10.99.nip.io ...
+##  + Creating chain cache directory /etc/resty-auto-ssl/letsencrypt/chains
+##  + Generating private key...
+##  + Generating signing request...
+##  + Requesting authorization for 173.249.10.99.nip.io...
+##  err: Can't load ./.rnd into RNG
+## 140690134127040:error:2406F079:random number generator:RAND_load_file:Cannot open file:../crypto/rand/randfile.c:88:Filename=./.rnd
+## /usr/local/bin/resty-auto-ssl/dehydrated: line 693: /etc/resty-auto-ssl/letsencrypt/.acme-challenges/gKNgIbdZEGhq9iIhxRK6Hn8xe_kbMJwCKAgVDnxdk3o: Permission denied
+## , context: ssl_certificate_by_lua*, client: 201.21.106.135, server: 0.0.0.0:443
+## 2019/06/23 01:50:14 [error] 22053#22053: *16 [lua] ssl_certificate.lua:97: issue_cert(): auto-ssl: issuing new certificate failed: dehydrated failure, context: ssl_certificate_by_lua*, client: 201.21.106.135, server: 0.0.0.0:443
+## 2019/06/23 01:50:14 [error] 22053#22053: *16 [lua] ssl_certificate.lua:286: auto-ssl: could not get certificate for 173.249.10.99.nip.io - using fallback - failed to get or issue certificate, context: ssl_certificate_by_lua*, client: 201.21.106.135, server: 0.0.0.0:443
+## 2019/06/23 01:50:17 [error] 22053#22053: *18 [lua] lets_encrypt.lua:41: issue_cert(): auto-ssl: dehydrated failed: env HOOK_SECRET=a6e7818677010e3a6addeae5a1b8aaebf65169bd31dd063e88bf3b69cb22b7d5 HOOK_SERVER_PORT=8999 /usr/local/bin/resty-auto-ssl/dehydrated --cron --accept-terms --no-lock --domain 173.249.10.99.nip.io --challenge http-01 --config /etc/resty-auto-ssl/letsencrypt/config --hook /usr/local/bin/resty-auto-ssl/letsencrypt_hooks status: 256 out: # INFO: Using main config file /etc/resty-auto-ssl/letsencrypt/config
