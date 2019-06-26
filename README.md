@@ -75,6 +75,19 @@ temos em mente o seguinte:
 - (Em breve)
 -->
 
+<!--
+TODO: considerar outras VPSs baratas para projetos seguintes
+
+- https://www.reddit.com/r/selfhosted/comments/b4vqdl/vps_provider_for_starting_out_with_self_hosting/
+  - "If you want something ridiculously cheap to play around with, don't need much RAM (128 MB) or disk space (2-3 GB), and don't mind using IPv6-only (or only having a few ports on a shared IPv4 address), there's several VPS providers that offer VPSes primarily with IPv6, along with a shared IPv4 address (NAT). Check out Gullo's Hosting and MrVM - Both have plans for around $4 per year."
+    - https://hosting.gullo.me/
+    - https://hosting.gullo.me/pricing
+
+E para discos
+- 2: https://buyvm.net/block-storage-slabs/ + https://buyvm.net/kvm-dedicated-server-slices/ (storage requer agente pra acessar)
+
+-->
+
 ## Veja também
 - _[AIOps para Comunidade dos Países de Língua Portuguesa, 2019/01](https://github.com/fititnt/cplp-aiops)_
     - Lista de onde veio inspiração para o Águia Pescadora

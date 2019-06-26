@@ -228,3 +228,4 @@ tail -f /usr/local/openresty/nginx/logs/error.log
 
 # Ou usar o comando scp
 scp -r /alligo/code/eticaai/aguia-pescadora/diario-de-bordo/delta/usr/local/openresty/nginx/html root@aguia-pescadora-delta.etica.ai:/usr/local/openresty/nginx/
+scp -r /alligo/code/eticaai/aguia-pescadora/diario-de-bordo/delta/usr/local/openresty/nginx/conf root@aguia-pescadora-delta.etica.ai:/usr/local/openresty/nginx/
