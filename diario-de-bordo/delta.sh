@@ -120,6 +120,51 @@ sudo cat /root/.ssh/authorized_keys
 # Setting Docker configuration on the remote daemon... \n Error running SSH command: ssh command error: \n command : netstat -tln \n err     : exit status 127 \n output  : bash: netstat: command not found
 sudo apt install net-tools
 
+#------------------------------------------------------------------------------#
+# SEÇÃO TSURU: SISTEMA DE ARQUIVOS / VOLUME POR CONTEINER                      #
+#                                                                              #
+#------------------------------------------------------------------------------#
+# @see https://github.com/EticaAI/aguia-pescadora/issues/20
+# @see https://www.youtube.com/watch?time_continue=4&v=WnVAS1raRik
+# @see https://github.com/rexray/rexray
+# @see http://rexray.io/
+
+cd /root
+
+## Visualize qual resultado do destino antes de instalar
+# curl -sSL https://rexray.io/install
+
+curl -sSL https://rexray.io/install | sh
+## root@aguia-pescadora-1:~# curl -sSL https://rexray.io/install | sh
+## Selecting previously unselected package rexray.
+## (Reading database ... 69675 files and directories currently installed.)
+## Preparing to unpack rexray_0.11.4-1_amd64.deb ...
+## Unpacking rexray (0.11.4-1) ...
+## Setting up rexray (0.11.4-1) ...
+## 
+## rexray has been installed to /usr/bin/rexray
+## 
+## REX-Ray
+## -------
+## Binary: /usr/bin/rexray
+## Flavor: client+agent+controller
+## SemVer: 0.11.4
+## OsArch: Linux-x86_64
+## Commit: e7414eaa971b27977d2283f2882825393493179d
+## Formed: Tue, 15 Jan 2019 16:03:57 UTC
+
+## @see https://blog.openebs.io/why-are-users-using-openebs-on-ebs-9b38fb04cd35
+
+## TODO: resolver requisitos antes de implementar isto
+vim /etc/tsuru/tsuru.conf
+# Adicione o seguinte ao final do arquivo
+##
+##volume-plans:
+##  ebs:
+##    swarm:
+##      driver: rexray/ebs
+  #kubernetes:
+  #    storage-class: my-ebs-storage-class
 
 #------------------------------------------------------------------------------#
 # SEÇÃO NGINX & HTTPS:                                                         #
