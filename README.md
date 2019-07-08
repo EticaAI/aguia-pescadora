@@ -89,6 +89,10 @@ E para discos
 -->
 
 ## Veja também
+- [Ansible Playbooks da Águia Pescadora](https://github.com/EticaAI/aguia-pescadora-ansible-playbooks)
+    - Nosso diário de bordo está sendo convertido para "Infrastrutura Como
+      Código"; isso possivelmente irá facilitar replicação de novos clusters
+      por pessoas com menos experiência em infraestrutura
 - _[AIOps para Comunidade dos Países de Língua Portuguesa, 2019/01](https://github.com/fititnt/cplp-aiops)_
     - Lista de onde veio inspiração para o Águia Pescadora
 - _[Etica.AI Infrastructure: Clusters & VPS](https://github.com/orgs/EticaAI/projects/2) <sup>Destino em Inglês</sup>_

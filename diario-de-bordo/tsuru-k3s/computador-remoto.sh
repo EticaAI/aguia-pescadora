@@ -75,3 +75,8 @@ netstat -ntulp
 ## tcp6       0      0 :::10252                :::*                    LISTEN      2199/k3s            
 ## udp        0      0 127.0.0.53:53           0.0.0.0:*                           390/systemd-resolve 
 ## udp        0      0 0.0.0.0:8472            0.0.0.0:*                           -
+
+
+k3s kubectl get node
+## NAME                          STATUS   ROLES    AGE   VERSION
+## vmi274563.contaboserver.net   Ready    master   13m   v1.14.3-k3s.1

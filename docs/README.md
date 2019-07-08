@@ -54,6 +54,16 @@ foram inspirados no fititnt/cplp-aiops e agora agora é projeto focado apenas no
 PaaS da Etica.AI que visa ter um lugar de baixo custo mensal mas que possa ser
 usado em produção.
 
+> _Atualização em 2019-07-07 21:23 BRT: nosso diário de bordo está sendo
+convertido para "Infrastrutura Como Código" em
+[Ansible Playbooks da Águia Pescadora](https://github.com/EticaAI/aguia-pescadora-ansible-playbooks)
+para facilitar replicação de outros clusters inclusive por responsáveis
+diferentes. **Percebemos também que um dos desafios de adoção de PaaS tenderá a
+ser não apenas sua configuração, mas principalmente documentação de quem usa**;
+isto é: apenas redução de custos para manter um cluster sem fins lucrativos pode
+não ser suficiente. Um rascunho de documentação do "ajuda.etica.dev"
+está em <https://ajuda-dev.etica.ai/>._
+
 ### Quais as especificações da Águia Pescadora?
 <!--
   - Águia Pescadora Alpha não tem previsão de ser desativada (custa pouco)
