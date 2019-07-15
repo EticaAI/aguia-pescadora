@@ -2,16 +2,22 @@
 
 > **NOTA: considere a situação desta página atual como um rascunho até que este comentário seja removido (fititnt, 2019-07-14 22:59 BRT)**
 
-<!-- TOC depthFrom:1 -->
+---
 
-- [Evolução do Águia Pescadora](#evolução-do-águia-pescadora)
-    - [Mudança de versões do Águia Pescadora](#mudança-de-versões-do-águia-pescadora)
-        - [Águia Pescadora 2.5-alpha](#águia-pescadora-25-alpha)
-        - [Águia Pescadora 2.0-alpha](#águia-pescadora-20-alpha)
-        - [Águia Pescadora 1.5-alpha](#águia-pescadora-15-alpha)
-        - [Águia Pescadora 1.0-alpha](#águia-pescadora-10-alpha)
+<!-- TOC depthFrom:2 -->
+
+- [Mudança de versões do Águia Pescadora](#mudança-de-versões-do-águia-pescadora)
+    - [Águia Pescadora 2.5-alpha](#águia-pescadora-25-alpha)
+    - [Águia Pescadora 2.0-alpha](#águia-pescadora-20-alpha)
+    - [Águia Pescadora 1.5-alpha](#águia-pescadora-15-alpha)
+    - [Águia Pescadora 1.0-alpha](#águia-pescadora-10-alpha)
+- [Pré Águia Pescadora](#pré-águia-pescadora)
+    - [AIOps para Comunidade dos Países de Língua Portuguesa, 2019/01](#aiops-para-comunidade-dos-países-de-língua-portuguesa-201901)
+    - [ChatOps for non-DevOps people Working Group 2018/01](#chatops-for-non-devops-people-working-group-201801)
 
 <!-- /TOC -->
+
+---
 
 ## Mudança de versões do Águia Pescadora
 
@@ -81,10 +87,10 @@ Provavelmente uma evolução direta da [VPS mamba [2vCPU / 1GB / 20GB]](https://
     - <https://github.com/fititnt/cplp-aiops/issues/16>
     - <https://github.com/EticaAI/forum/issues/78>
 
+## Pré Águia Pescadora
 
----
+### AIOps para Comunidade dos Países de Língua Portuguesa, 2019/01
+- <https://github.com/fititnt/cplp-aiops>
 
-Edição:
-
-- De 3.0-alpha para 2.5-alpha
-  - Os objetivos da 3.0 ainda não estão completamente definidos, ainda se trata de mudança de versão
+### ChatOps for non-DevOps people Working Group 2018/01
+- <https://github.com/fititnt/chatops-wg>

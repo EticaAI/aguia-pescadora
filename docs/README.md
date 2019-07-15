@@ -2,12 +2,21 @@
 
 [![Website: aguia-pescadora.etica.ai](img/badges/website.svg)](https://aguia-pescadora.etica.ai) [![GitHub: EticaAI/aguia-pescadora](img/badges/github.svg)](https://github.com/EticaAI/aguia-pescadora)
 
+**_"Águia Pescadora"_ é codinome atual usado pela [Etica.AI](https://etica.ai)
+tanto da implementação da núvem pública desta como da própria documentação de
+como pode ser recriada por terceiros.** [Também é inspirada em iniciativas anteriores](evolucao/#pré-Águia-pescadora).
+
+<!--
+documentação/código dedicada ao domínio publico como da própria implementação de solução completa da
+nuvem pública da [Etica.AI](https://etica.ai)**.
+
 **Águia Pescadora é o nome dado ao projeto da Etica.AI de Plataforma Como Serviço
 (_"PaaS"_) oferecida gratuitamente a quem da apoio em comunidades de base nas
 quais participamos.** Nas próximas semanas devemos ter um ambiente
 aceitavelmente pronto para uso em produção e com controle automatizado de
 [etica.dev](https://etica.dev), sendo um dos nossos maiores desafios o processo
 de documentação e otimização para permitir uso simples.
+-->
 
 Veja também: [pt.etica.ai](https://pt.etica.ai) \| [docs.etica.ai/pt](https://docs.etica.ai/pt) \| [cplp.etica.ai](https://cplp.etica.ai) \| [inclusao.etica.ai](https://inclusao.etica.ai) 
 

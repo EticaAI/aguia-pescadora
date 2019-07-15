@@ -1,8 +1,9 @@
-# Águia Pescadora: Plataforma Como Serviço da Etica.AI
+# Águia Pescadora
 
-**Águia Pescadora é o nome dado ao projeto da Etica.AI de Plataforma Como Serviço
-(_"PaaS"_) oferecida gratuitamente a quem da apoio em comunidades de base nas
-quais participamos.**
+**_"Águia Pescadora"_ é codinome atual usado pela [Etica.AI](https://etica.ai)
+tanto da implementação da núvem pública desta como da própria documentação de
+como pode ser recriada por terceiros.**
+[Também é inspirada em iniciativas anteriores](https://aguia-pescadora.etica.ai/evolucao/#evolucao/#pré-Águia-pescadora).
 
 [![Banner Águia Pescadora - © Andy Morffew www.andymorffew.com](docs/img/aguia-pescadora-banner.jpg)](https://aguia-pescadora.etica.ai)
 
