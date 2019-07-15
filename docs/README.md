@@ -31,6 +31,7 @@ Veja também: [pt.etica.ai](https://pt.etica.ai) \| [docs.etica.ai/pt](https://d
 - [Guia de Usuário](guia-de-usuario/)
 - [Guia de suporte: informações extras para quem ajuda usuários](./guia-de-suporte/)
 - [Filosofia: das decisões que levaram a escolha da pilha de soluções a dicas de o que considerar ao criar sua própria](filosofia/)
+- [Evolução: saiba diferença entre as versões do Águia Pescadora](evolucao/)
 
 <!--
 - Sites extras da Etica.AI relacionados ao Águia Pescadora
