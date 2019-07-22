@@ -1,6 +1,6 @@
 # Águia Pescadora
 
-[![Website: aguia-pescadora.etica.ai](img/badges/website.svg)](https://aguia-pescadora.etica.ai) [![GitHub: EticaAI/aguia-pescadora](img/badges/github.svg)](https://github.com/EticaAI/aguia-pescadora)
+[![Website: aguia-pescadora.etica.ai](img/badges/website.svg)](https://aguia-pescadora.etica.ai) [![GitHub: EticaAI/aguia-pescadora](img/badges/github.svg)](https://github.com/EticaAI/aguia-pescadora) [![GitHub: EticaAI/aguia-pescadora-ansible-playbooks](img/badges/github-aguia-pescadora-ansible-playbooks.svg)](https://github.com/EticaAI/aguia-pescadora-ansible-playbooks)
 
 **_"Águia Pescadora"_ é codinome atual usado pela [Etica.AI](https://etica.ai)
 tanto da implementação da núvem pública desta como da própria documentação de
@@ -82,6 +82,17 @@ está em <https://ajuda-dev.etica.ai/>._
     - No futuro, caso haja necessidade, poderão ser recriadas _dentro_ da Águia Pescadora
   - aaa
 -->
+
+> _Atualização em 2019-07-22 03:41 BRT: é provável que a versão de nuvem pública
+que use Kubernetes para orquestração do Águia Pescadora acabe tendo que usar
+pelo menos em torno do dobro da a quantidade de 3 nós de modo que seja tolerante
+a falhas de máquinas e falhas humanas. Esta nova versão provavelmente será
+chamada de "v3.0" (atualmente tem-se "v2.0.x-alpha"). Se Delta (que tem 16GB de
+RAM) for aposentada em prol de menores de 8GB a 4.99EUR/mês ainda seria possível
+ter 3+2 VPSs ([Nodes: 5][CPU: 20][RAM: 40GB][Disk: 1.000GB]) a um custo em torno
+de 100 BRL. Kubernetes é complexo de permitir uso simples, então o PaaS público
+da Águia Pescadora está planejado para início de 2020. **Aplicações de colegas
+serão executadas em versões privadas até lá**._
 
 A meta é _**[Tsuru Nodes: 3][CPU: 14][RAM: 32GB][Disk: 800GB][Custo Mensal: < 100 Reais]**_.
 Pela cotação de EURO a 4.37 as as especificações acima são 82,79 Reais

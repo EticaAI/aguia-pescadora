@@ -7,4 +7,5 @@
 ## python -m pybadges --left-text='Label here' --right-text='Value here' --right-color='#26A65B' --browser
 
 python -m pybadges --left-text='GitHub' --right-text='EticaAI/aguia-pescadora' --right-color='#237c02' > github.svg
+python -m pybadges --left-text='GitHub' --right-text='EticaAI/aguia-pescadora-ansible-playbooks' --right-color='#237c02' > github-aguia-pescadora-ansible-playbooks.svg
 python -m pybadges --left-text='Website' --right-text='aguia-pescadora.etica.ai' --right-color='#237c02' > website.svg
